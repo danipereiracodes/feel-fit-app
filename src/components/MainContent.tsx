@@ -1,3 +1,5 @@
+import StepOneForm from './form-steps/StepOneForm';
+
 const MainContent: React.FC = () => {
   return (
     <section className='relative flex items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
@@ -11,6 +13,10 @@ const MainContent: React.FC = () => {
         <button className='bg-bright-secondary rounded-xl py-2 px-4 text-white font-normal text-lg'>
           Get started!
         </button>
+      </div>
+
+      <div className='z-30'>
+        <StepOneForm />
       </div>
     </section>
   );
