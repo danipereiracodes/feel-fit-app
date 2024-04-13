@@ -1,6 +1,6 @@
 const MainContent: React.FC = () => {
   return (
-    <section className='relative flex items-center justify-center bg-[url("/img/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
+    <section className='relative flex items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
       <div className='z-20 flex flex-col gap-4 items-center text-center w-2/3 text-white text-2xl font-bold'>
         <h1>
