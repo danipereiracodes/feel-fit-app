@@ -1,7 +1,13 @@
+import Footer from './components/Footer';
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+
 function App() {
   return (
-    <section className='h-screen w-screen bg-blue-400'>
-      <h1>Here we go</h1>
+    <section className='grid grid-cols-1 grid-rows-feelFitLayout h-screen'>
+      <Header />
+      <MainContent />
+      <Footer />
     </section>
   );
 }
