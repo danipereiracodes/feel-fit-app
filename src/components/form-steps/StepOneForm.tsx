@@ -45,22 +45,10 @@ const StepOneForm: React.FC = () => {
             <option key={option.label}>{option.value}</option>
           ))}
         </select>
-        <input
-          type='number'
-          defaultValue={14}
-          {...register('age', { min: 16, max: 100 })}
-        />
-        <input
-          type='number'
-          defaultValue={30}
-          {...register('weight', { min: 30, max: 200 })}
-        />
+        <input type='number' defaultValue={14} {...register('age')} />
+        <input type='number' defaultValue={30} {...register('weight')} />
 
-        <input
-          type='number'
-          defaultValue={100}
-          {...register('height', { min: 100, max: 230 })}
-        />
+        <input type='number' defaultValue={100} {...register('height')} />
         <button
           type='submit'
           className='bg-bright-secondary rounded-xl py-2 px-4 text-white font-normal text-lg'
