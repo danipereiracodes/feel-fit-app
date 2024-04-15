@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import { useStepStore } from '../store/StepStore';
-
-const buttonTextInitialState = 'Get Started!';
+import StepOneForm from './form-steps/StepOneForm';
 
 const MainContent: React.FC = () => {
-  const [buttonText, setButtonText] = useState<string>(buttonTextInitialState);
   const step = useStepStore((state) => state.step);
   const setStep = useStepStore((state) => state.addStep);
 
@@ -22,56 +19,69 @@ const MainContent: React.FC = () => {
   const RenderSteps = ({ currentStep }: { currentStep: number }) => {
     switch (currentStep) {
       case 1:
-        setButtonText('Step Two');
         return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            Form Step 1
+          <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
+            <StepOneForm
+              title='Some information about you'
+              gridCols='grid-cols-2'
+              onHandleSubmit={handleSubmit}
+            />
           </div>
         );
-
       case 2:
-        setButtonText('Step three');
         return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            Form Step 2
+          <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
+            <StepOneForm
+              title='Tell us about your diet or alergies'
+              gridCols='grid-cols-1'
+              onHandleSubmit={handleSubmit}
+            />
           </div>
         );
 
       case 3:
-        setButtonText('Go to summary');
         return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            Form Step 3
+          <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
+            <StepOneForm
+              title='How often do you exercise?'
+              gridCols='1'
+              onHandleSubmit={handleSubmit}
+            />
           </div>
         );
 
       case 4:
-        setButtonText('Submit');
         return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            SUMMARY <button>Share</button>
+          <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
+            <button onClick={() => setStep(0)}>Share</button>
           </div>
         );
 
       default:
         setStep(0);
-        setButtonText(buttonTextInitialState);
+
         return HomeBanner();
     }
+  };
+
+  const handleSubmit = () => {
+    setStep(step + 1);
   };
 
   return (
     <section className='relative flex flex-col gap-8 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
+
       <RenderSteps currentStep={step} />
-      <button
-        onClick={() => {
-          setStep(step + 1);
-        }}
-        className='z-20 bg-bright-secondary rounded-xl py-2 px-4 text-white font-normal text-lg'
-      >
-        {buttonText}
-      </button>
+
+      {step === 0 && (
+        <button
+          onClick={handleSubmit}
+          className='z-20 bg-bright-secondary rounded-xl py-2 px-4 text-white font-normal text-lg'
+        >
+          Get Started!
+        </button>
+      )}
     </section>
   );
 };
