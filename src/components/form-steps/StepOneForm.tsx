@@ -20,7 +20,7 @@ export interface Inputs {
 interface StepOneFormProps {
   title: string;
   gridCols: string;
-  onNextStep?: () => void;
+  onNextStep: () => void;
 }
 
 const enumToSelectOptions = (genderEnumObject: typeof GenderEnum) => {
@@ -48,7 +48,7 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     updateData(data);
-    onNextStep;
+    onNextStep();
   };
 
   useEffect(() => {
