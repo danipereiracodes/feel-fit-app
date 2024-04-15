@@ -1,7 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useStepStore } from '../../store/StepStore';
-import { useEffect } from 'react';
 
+//TODO: EXPORT TYPES AND ENUMS
 export enum GenderEnum {
   NONE = ' ',
   FEMALE = 'Female',
@@ -50,10 +51,6 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
     updateData(data);
     onNextStep();
   };
-
-  useEffect(() => {
-    console.log('Updated data:', inputData);
-  }, [inputData]);
 
   return (
     <section>
