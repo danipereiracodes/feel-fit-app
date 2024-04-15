@@ -34,6 +34,7 @@ const MainContent: React.FC = () => {
             <StepOneForm
               title='Tell us about your diet or alergies'
               gridCols='grid-cols-1'
+              onNextStep={handleSubmit}
             />
           </div>
         );
@@ -41,7 +42,11 @@ const MainContent: React.FC = () => {
       case 3:
         return (
           <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 max-w-2/3 min-w-1/3 text-black font-extrabold text-2xl'>
-            <StepOneForm title='How often do you exercise?' gridCols='1' />
+            <StepOneForm
+              title='How often do you exercise?'
+              gridCols='1'
+              onNextStep={handleSubmit}
+            />
           </div>
         );
 
