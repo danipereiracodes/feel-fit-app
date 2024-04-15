@@ -53,14 +53,12 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
   };
 
   return (
-    <section>
-      <header className='h-16 mb-8 text-2xl text-black flex items-center justify-center'>
-        <h1>{title}</h1>
-      </header>
-      <form
+    <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+      <fieldset
         className={`grid ${String(gridCols)} gap-8 text-black text-start`}
-        onSubmit={handleSubmit(onSubmit)}
       >
+        <legend>{title}</legend>
+
         <label htmlFor='gender'>Gender</label>
         <select
           id='gender'
@@ -112,8 +110,8 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
             </ul>
           </div>
         )}
-      </form>
-    </section>
+      </fieldset>
+    </form>
   );
 };
 
