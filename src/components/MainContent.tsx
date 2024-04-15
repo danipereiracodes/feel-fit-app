@@ -75,12 +75,17 @@ const MainContent: React.FC = () => {
       <RenderSteps currentStep={step} />
 
       {step === 0 && (
-        <button
-          onClick={handleSubmit}
-          className='z-20 bg-bright-secondary rounded-xl py-2 px-4 text-white font-normal text-lg'
-        >
-          Get Started!
-        </button>
+        <div className='flex items-center gap-4 z-20 text-white font-normal text-md'>
+          <button
+            onClick={handleSubmit}
+            className='uppercase border-4 border-bright-secondary  rounded-xl w-32  py-2 px-6 hover:bg-bright-secondary'
+          >
+            Start
+          </button>{' '}
+          <button className='uppercase border-4 border-bright-secondary  w-32 rounded-xl py-2 px-6 hover:bg-bright-secondary '>
+            Login
+          </button>
+        </div>
       )}
     </section>
   );
