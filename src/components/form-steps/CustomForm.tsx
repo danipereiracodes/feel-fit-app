@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useStepStore } from '../../store/StepStore';
+import CustomInput from './form-fields/CustomInput';
 
 //TODO: EXPORT TYPES AND ENUMS
 export enum GenderEnum {
@@ -33,16 +34,12 @@ const enumToSelectOptions = (genderEnumObject: typeof GenderEnum) => {
 
 const genderOptions = enumToSelectOptions(GenderEnum);
 
-const StepOneForm: React.FC<StepOneFormProps> = ({
+const CustomForm: React.FC<StepOneFormProps> = ({
   gridCols,
   title,
   onNextStep,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    /* watch, */
-  } = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<Inputs>();
 
   const inputData = useStepStore((state) => state.data);
   const updateData = useStepStore((state) => state.updateData);
@@ -50,6 +47,8 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     updateData(data);
     onNextStep();
+
+    console.log(inputData);
   };
 
   return (
@@ -72,13 +71,8 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
           ))}
         </select>
 
-        <label htmlFor='age'>Age</label>
-        <input
-          id='age'
-          type='number'
-          {...register('age')}
-          className='backdrop-blur-sm bg-white/30 px-2 py-1'
-        />
+        <CustomInput name='age' label='age' type='number' />
+
         <label htmlFor='weight'>Weight</label>
         <input
           id='weight'
@@ -115,4 +109,4 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
   );
 };
 
-export default StepOneForm;
+export default CustomForm;

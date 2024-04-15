@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { type Inputs } from '../components/form-steps/StepOneForm';
-import { GenderEnum } from '../components/form-steps/StepOneForm';
+import { type Inputs } from '../components/form-steps/CustomForm';
+import { GenderEnum } from '../components/form-steps/CustomForm';
 
 interface IStep {
   step: number;
