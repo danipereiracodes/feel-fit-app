@@ -1,6 +1,9 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useStepStore } from '../../store/StepStore';
+import { useEffect } from 'react';
 
-enum GenderEnum {
+export enum GenderEnum {
+  NONE = ' ',
   FEMALE = 'Female',
   MALE = 'Male',
   NOBIN = 'No Binary',
@@ -17,7 +20,7 @@ export interface Inputs {
 interface StepOneFormProps {
   title: string;
   gridCols: string;
-  onHandleSubmit: (data: Inputs) => void;
+  onNextStep?: () => void;
 }
 
 const enumToSelectOptions = (genderEnumObject: typeof GenderEnum) => {
@@ -30,9 +33,9 @@ const enumToSelectOptions = (genderEnumObject: typeof GenderEnum) => {
 const genderOptions = enumToSelectOptions(GenderEnum);
 
 const StepOneForm: React.FC<StepOneFormProps> = ({
-  onHandleSubmit,
-  title,
   gridCols,
+  title,
+  onNextStep,
 }) => {
   const {
     register,
@@ -40,13 +43,21 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
     /* watch, */
   } = useForm<Inputs>();
 
+  const inputData = useStepStore((state) => state.data);
+  const updateData = useStepStore((state) => state.updateData);
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    onHandleSubmit(data);
+    updateData(data);
+    onNextStep;
   };
 
+  useEffect(() => {
+    console.log('Updated data:', inputData);
+  }, [inputData]);
+
   return (
-    <section className='text-center'>
-      <header className=' h-16 mb-8 border-b border-black text-2xl text-black flex items-center justify-center'>
+    <section>
+      <header className='h-16 mb-8 text-2xl text-black flex items-center justify-center'>
         <h1>{title}</h1>
       </header>
       <form
@@ -94,6 +105,16 @@ const StepOneForm: React.FC<StepOneFormProps> = ({
         >
           Next step
         </button>
+        {inputData && (
+          <div>
+            <ul>
+              <li>{inputData.gender && inputData.gender}</li>
+              <li>{inputData.age > 0 && inputData.age}</li>
+              <li>{inputData.height > 0 && inputData.height}</li>
+              <li>{inputData.weight > 0 && inputData.weight}</li>
+            </ul>
+          </div>
+        )}
       </form>
     </section>
   );
