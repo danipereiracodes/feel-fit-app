@@ -2,31 +2,15 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useStepStore } from '../../store/StepStore';
 import CustomInput from './form-fields/CustomInput';
-import { InputValues } from './form-fields/CustomInput';
-
-//TODO: EXPORT TYPES AND ENUMS
-export enum GenderEnum {
-  NONE = ' ',
-  FEMALE = 'Female',
-  MALE = 'Male',
-  NOBIN = 'No Binary',
-  RNS = 'Rather not say',
-}
+import CustomSelect from './form-fields/CustomSelect';
+import { InputValues } from '../../types/InputTypes';
+import Button from '../buttons/Buton';
 
 interface StepOneFormProps {
   title: string;
   gridCols: string;
   onNextStep: () => void;
 }
-
-const enumToSelectOptions = (genderEnumObject: typeof GenderEnum) => {
-  return Object.keys(genderEnumObject).map((key) => ({
-    value: genderEnumObject[key as keyof typeof genderEnumObject],
-    label: key,
-  }));
-};
-
-const genderOptions = enumToSelectOptions(GenderEnum);
 
 const CustomForm: React.FC<StepOneFormProps> = ({
   gridCols,
@@ -52,18 +36,8 @@ const CustomForm: React.FC<StepOneFormProps> = ({
       >
         <legend>{title}</legend>
 
-        {/* <label htmlFor='gender'>Gender</label>
-        <select
-          id='gender'
-          {...register('gender')}
-          className='backdrop-blur-sm bg-white/30 px-2 py-1'
-        >
-          {' '}
-          <option value={''}>Select</option>
-          {genderOptions.map((option) => (
-            <option key={option.label}>{option.value}</option>
-          ))}
-        </select> */}
+        <CustomSelect register={register} required label='gender' />
+
         <CustomInput type='number' label='age' register={register} required />
         <CustomInput
           type='number'
@@ -78,12 +52,14 @@ const CustomForm: React.FC<StepOneFormProps> = ({
           required
         />
 
-        <button
+        <Button
           type='submit'
-          className='z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
-        >
-          Next step
-        </button>
+          styles={
+            'z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+          }
+          text='Next Step'
+        />
+
         {inputData && (
           <div>
             <ul>

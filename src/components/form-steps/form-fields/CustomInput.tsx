@@ -1,10 +1,5 @@
 import { Path, UseFormRegister } from 'react-hook-form';
-
-export interface InputValues {
-  age: number;
-  height: number;
-  weight: number;
-}
+import { InputValues } from '../../../types/InputTypes';
 
 interface CustomInputProps {
   label: Path<InputValues>;
