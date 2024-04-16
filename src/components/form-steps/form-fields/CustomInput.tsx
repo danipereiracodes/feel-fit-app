@@ -4,7 +4,7 @@ import { InputValues } from '../../../types/InputTypes';
 interface CustomInputProps {
   label: Path<InputValues>;
   register: UseFormRegister<InputValues>;
-  required: boolean;
+  required?: boolean;
   type: string;
 }
 
