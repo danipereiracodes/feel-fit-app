@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { InputValues } from '../types/InputTypes';
-import { GenderEnum } from '../enums/GenderEnums';
 
 interface IStep {
   step: number;
@@ -9,17 +8,20 @@ interface IStep {
   updateData: (newData: InputValues) => void;
 }
 
+const initialState = {
+  name: '',
+  lastname: '',
+  allergies: '',
+  age: 0,
+  weight: 0,
+  height: 0,
+  gender: [],
+};
+
 export const useStepStore = create<IStep>((set) => ({
   step: 0,
   addStep: (newStep: number) => set({ step: newStep }),
-  data: {
-    name: '',
-    lastname: '',
-    age: 0,
-    weight: 0,
-    height: 0,
-    gender: [GenderEnum.NONE],
-  },
+  data: initialState,
 
   updateData: (newData: InputValues) =>
     set((state) => ({ data: { ...state.data, ...newData } })),
