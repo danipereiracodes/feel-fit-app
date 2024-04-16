@@ -1,25 +1,23 @@
-import { useForm } from 'react-hook-form';
+import { Path, UseFormRegister } from 'react-hook-form';
+
+export interface InputValues {
+  age: number;
+  height: number;
+  weight: number;
+}
 
 interface CustomInputProps {
-  label: string | null;
-  name: string;
+  label: Path<InputValues>;
+  register: UseFormRegister<InputValues>;
+  required: boolean;
   type: string;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ type, label, name }) => {
-  const { register } = useForm();
-
-  return (
-    <>
-      <label htmlFor={name}>{label}</label>
-      <input
-        id={name}
-        type={type}
-        {...register(name)}
-        className='backdrop-blur-sm bg-white/30 px-2 py-1'
-      />
-    </>
-  );
-};
+const CustomInput = ({ label, register, required, type }: CustomInputProps) => (
+  <>
+    <label>{label}</label>
+    <input type={type} {...register(label, { required })} />
+  </>
+);
 
 export default CustomInput;
