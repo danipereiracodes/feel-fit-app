@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useStepStore } from '../../store/StepStore';
 import CustomInput from './form-fields/CustomInput';
+import { InputValues } from './form-fields/CustomInput';
 
 //TODO: EXPORT TYPES AND ENUMS
 export enum GenderEnum {
@@ -10,13 +11,6 @@ export enum GenderEnum {
   MALE = 'Male',
   NOBIN = 'No Binary',
   RNS = 'Rather not say',
-}
-
-export interface Inputs {
-  age: number;
-  weight: number;
-  height: number;
-  gender: GenderEnum[];
 }
 
 interface StepOneFormProps {
@@ -39,12 +33,12 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   title,
   onNextStep,
 }) => {
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<InputValues>();
 
   const inputData = useStepStore((state) => state.data);
   const updateData = useStepStore((state) => state.updateData);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
     onNextStep();
 
@@ -58,7 +52,7 @@ const CustomForm: React.FC<StepOneFormProps> = ({
       >
         <legend>{title}</legend>
 
-        <label htmlFor='gender'>Gender</label>
+        {/* <label htmlFor='gender'>Gender</label>
         <select
           id='gender'
           {...register('gender')}
@@ -69,23 +63,19 @@ const CustomForm: React.FC<StepOneFormProps> = ({
           {genderOptions.map((option) => (
             <option key={option.label}>{option.value}</option>
           ))}
-        </select>
-
-        <CustomInput name='age' label='age' type='number' />
-
-        <label htmlFor='weight'>Weight</label>
-        <input
-          id='weight'
+        </select> */}
+        <CustomInput type='number' label='age' register={register} required />
+        <CustomInput
           type='number'
-          {...register('weight')}
-          className='backdrop-blur-sm bg-white/30 px-2 py-1'
+          label='weight'
+          register={register}
+          required
         />
-        <label htmlFor='height'>Height</label>
-        <input
-          id='height'
+        <CustomInput
           type='number'
-          {...register('height')}
-          className='backdrop-blur-sm bg-white/30 px-2 py-1'
+          label='height'
+          register={register}
+          required
         />
 
         <button
