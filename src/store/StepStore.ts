@@ -1,12 +1,12 @@
 import { create } from 'zustand';
-import { type Inputs } from '../components/form-steps/CustomForm';
-import { GenderEnum } from '../components/form-steps/CustomForm';
+import { InputValues } from '../types/InputTypes';
+import { GenderEnum } from '../enums/GenderEnums';
 
 interface IStep {
   step: number;
   addStep: (newStep: number) => void;
-  data: Inputs;
-  updateData: (newData: Inputs) => void;
+  data: InputValues;
+  updateData: (newData: InputValues) => void;
 }
 
 export const useStepStore = create<IStep>((set) => ({
@@ -19,6 +19,6 @@ export const useStepStore = create<IStep>((set) => ({
     gender: [GenderEnum.NONE],
   },
 
-  updateData: (newData: Inputs) =>
+  updateData: (newData: InputValues) =>
     set((state) => ({ data: { ...state.data, ...newData } })),
 }));

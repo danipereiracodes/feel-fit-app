@@ -3,6 +3,7 @@ import { useStepStore } from '../store/StepStore';
 import { healtData } from '../lib/data/healthTips';
 import Steps from './Steps';
 import myBulb from '../components/icons/bulb.svg';
+import Button from './buttons/Buton';
 
 const fetchData = () => {
   const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
@@ -30,15 +31,18 @@ const MainContent: React.FC = () => {
 
       {step === 0 && (
         <div className='flex items-center gap-4 z-20 text-white font-normal text-md'>
-          <button
+          <Button
+            type='button'
             onClick={handleSubmit}
-            className='uppercase border-4 border-bright-secondary  rounded-xl w-32  py-2 px-6 hover:bg-bright-secondary'
-          >
-            Start
-          </button>{' '}
-          <button className='uppercase border-4 border-bright-secondary  w-32 rounded-xl py-2 px-6 hover:bg-bright-secondary '>
-            Login
-          </button>
+            text='Start'
+            styles='uppercase border-4 border-bright-secondary  rounded-xl w-32  py-2 px-6 hover:bg-bright-secondary'
+          />
+
+          <Button
+            type='button'
+            text='Login'
+            styles='uppercase border-4 border-bright-secondary  w-32 rounded-xl py-2 px-6 hover:bg-bright-secondary '
+          />
         </div>
       )}
       <div className='fixed top-8 left-24 w-[150px] h-[150px] flex flex-wrap rounded-xl bg-black text-white p-4 text-ellipsis line-clamp-3'>
