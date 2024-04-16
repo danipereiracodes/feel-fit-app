@@ -1,5 +1,6 @@
 import { useStepStore } from '../store/StepStore';
 import HomeBanner from './HomeBanner';
+import Button from './buttons/Buton';
 import CustomForm from './form-steps/CustomForm';
 
 interface StepsProps {
@@ -16,7 +17,7 @@ const Steps: React.FC<StepsProps> = ({ currentStep, onSubmit }) => {
         <div className='transition-opacity ease-in-out delay-150 z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 w-[350px] md:w-[500px] lg:w-[750px] text-black font-extrabold text-2xl'>
           <CustomForm
             title='Some information about you'
-            gridCols='grid-cols-2'
+            gridCols='grid-cols-3'
             onNextStep={onSubmit}
           />
         </div>
@@ -46,7 +47,12 @@ const Steps: React.FC<StepsProps> = ({ currentStep, onSubmit }) => {
     case 4:
       return (
         <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 max-w-2/3 min-w-1/3 text-black font-extrabold text-2xl'>
-          <button onClick={() => setStep(0)}>Share</button>
+          <Button
+            type='button'
+            onClick={() => setStep(0)}
+            text='Share'
+            styles=''
+          />
         </div>
       );
 

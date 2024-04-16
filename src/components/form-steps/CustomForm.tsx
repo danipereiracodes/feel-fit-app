@@ -5,6 +5,7 @@ import CustomInput from './form-fields/CustomInput';
 import CustomSelect from './form-fields/CustomSelect';
 import { InputValues } from '../../types/InputTypes';
 import Button from '../buttons/Buton';
+import { useEffect } from 'react';
 
 interface StepOneFormProps {
   title: string;
@@ -25,17 +26,25 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
     onNextStep();
-
-    console.log(inputData);
   };
+
+  useEffect(() => {
+    console.log(inputData);
+  }, [inputData]);
 
   return (
     <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
       <fieldset
         className={`grid ${String(gridCols)} gap-8 text-black text-start`}
       >
-        <legend>{title}</legend>
-
+        <legend className='w-full text-center mb-8'>{title}</legend>
+        <CustomInput type='text' label='name' register={register} required />
+        <CustomInput
+          type='text'
+          label='lastname'
+          register={register}
+          required
+        />
         <CustomSelect register={register} required label='gender' />
 
         <CustomInput type='number' label='age' register={register} required />
@@ -59,17 +68,6 @@ const CustomForm: React.FC<StepOneFormProps> = ({
           }
           text='Next Step'
         />
-
-        {inputData && (
-          <div>
-            <ul>
-              <li>{inputData.gender && inputData.gender}</li>
-              <li>{inputData.age > 0 && inputData.age}</li>
-              <li>{inputData.height > 0 && inputData.height}</li>
-              <li>{inputData.weight > 0 && inputData.weight}</li>
-            </ul>
-          </div>
-        )}
       </fieldset>
     </form>
   );
