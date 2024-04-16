@@ -9,10 +9,10 @@ interface CustomInputProps {
 }
 
 const CustomInput = ({ label, register, required, type }: CustomInputProps) => (
-  <>
+  <div className='flex flex-col capitalize'>
     <label>{label}</label>
     <input type={type} {...register(label, { required })} />
-  </>
+  </div>
 );
 
 export default CustomInput;

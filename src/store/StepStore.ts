@@ -13,6 +13,8 @@ export const useStepStore = create<IStep>((set) => ({
   step: 0,
   addStep: (newStep: number) => set({ step: newStep }),
   data: {
+    name: '',
+    lastname: '',
     age: 0,
     weight: 0,
     height: 0,

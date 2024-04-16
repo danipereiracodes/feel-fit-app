@@ -23,17 +23,20 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   required,
 }) => {
   return (
-    <select
-      id='gender'
-      {...register(label as keyof InputValues, { required })}
-      className='backdrop-blur-sm bg-white/30 px-2 py-1'
-    >
-      {' '}
-      <option value={''}>Select</option>
-      {genderOptions.map((option) => (
-        <option key={option.label}>{option.value}</option>
-      ))}
-    </select>
+    <div className='flex flex-col capitalize'>
+      <label htmlFor={label}>{label}</label>
+      <select
+        id='gender'
+        {...register(label as keyof InputValues, { required })}
+        className='backdrop-blur-sm bg-white/30 px-2 py-1'
+      >
+        {' '}
+        <option value={''}>Select</option>
+        {genderOptions.map((option) => (
+          <option key={option.label}>{option.value}</option>
+        ))}
+      </select>
+    </div>
   );
 };
 
