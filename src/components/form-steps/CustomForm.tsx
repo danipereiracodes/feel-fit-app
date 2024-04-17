@@ -5,6 +5,7 @@ import useStepFields from '../../hooks/useStepFields';
 import { InputValues } from '../../types/InputTypes';
 import Button from '../buttons/Buton';
 import { useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface StepOneFormProps {
   title: string;
@@ -44,7 +45,8 @@ const CustomForm: React.FC<StepOneFormProps> = ({
         <legend className='w-full text-center mb-8'>{title}</legend>
         {fields &&
           fields.map((elements) => {
-            return <>{elements}</>;
+            const uniqueKey = uuidv4();
+            return <div key={uniqueKey}>{elements}</div>;
           })}
 
         <Button
