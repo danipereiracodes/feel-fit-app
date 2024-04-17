@@ -1,77 +1,51 @@
-import { useState } from 'react';
 import { useStepStore } from '../store/StepStore';
 
-const buttonTextInitialState = 'Get Started!';
+import Steps from './Steps';
+
+import Button from './buttons/Buton';
+
+/* const fetchData = () => {
+  const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
+  return shuffledhealthData;
+}; */
 
 const MainContent: React.FC = () => {
-  const [buttonText, setButtonText] = useState<string>(buttonTextInitialState);
   const step = useStepStore((state) => state.step);
   const setStep = useStepStore((state) => state.addStep);
+  /* const [tips, setTips] = useState<string>('Loading...'); */
 
-  const HomeBanner = () => {
-    return (
-      <div className='z-20 flex flex-col gap-4 items-center text-center w-2/3 text-white text-2xl font-bold'>
-        <h1>
-          Get your weekly meal prep and exercise plan{' '}
-          <span className='font-bold underline'>in seconds</span>, starting now!
-        </h1>
-      </div>
-    );
-  };
-
-  const RenderSteps = ({ currentStep }: { currentStep: number }) => {
-    switch (currentStep) {
-      case 1:
-        setButtonText('Step Two');
-        return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            Form Step 1
-          </div>
-        );
-
-      case 2:
-        setButtonText('Step three');
-        return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            Form Step 2
-          </div>
-        );
-
-      case 3:
-        setButtonText('Go to summary');
-        return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            Form Step 3
-          </div>
-        );
-
-      case 4:
-        setButtonText('Submit');
-        return (
-          <div className='bg-slate-200 rounded-xl p-8 w-[500px] h-[500px] text-black font-extrabold text-2xl'>
-            SUMMARY <button>Share</button>
-          </div>
-        );
-
-      default:
-        setStep(0);
-        setButtonText(buttonTextInitialState);
-        return HomeBanner();
-    }
+  const handleSubmit = () => {
+    setStep(step + 1);
   };
 
   return (
     <section className='relative flex flex-col gap-8 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
-      <RenderSteps currentStep={step} />
-      <button
-        onClick={() => {
-          setStep(step + 1);
-        }}
-        className='z-20 bg-bright-secondary rounded-xl py-2 px-4 text-white font-normal text-lg'
-      >
-        {buttonText}
-      </button>
+
+      <Steps currentStep={step} onSubmit={handleSubmit} />
+
+      {step === 0 && (
+        <div className='flex items-center gap-4 z-20 text-white font-normal text-md'>
+          <Button
+            type='button'
+            onClick={handleSubmit}
+            text='Start'
+            styles='uppercase border-4 border-bright-secondary  rounded-xl w-32  py-2 px-6 hover:bg-bright-secondary'
+          />
+
+          <Button
+            type='button'
+            text='Login'
+            styles='uppercase border-4 border-bright-secondary  w-32 rounded-xl py-2 px-6 hover:bg-bright-secondary '
+          />
+        </div>
+      )}
+      {/* TODO: TIP COMPONENT <div className='fixed top-8 left-24 w-[150px] h-[150px] flex flex-wrap rounded-xl bg-black text-white p-4 text-ellipsis line-clamp-3'>
+        <div className=' relative  flex items-center no-wrap '>
+          <img src={myBulb} alt='bulb'></img>{' '}
+          <span className='mt-8'>{tips}</span>
+        </div>
+      </div> */}
     </section>
   );
 };
