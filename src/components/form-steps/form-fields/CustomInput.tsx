@@ -1,17 +1,24 @@
-import { Path, UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 import { InputValues } from '../../../types/InputTypes';
 
 interface CustomInputProps {
-  label: Path<InputValues>;
+  name: string;
   register: UseFormRegister<InputValues>;
   required?: boolean;
   type: string;
+  label: string;
 }
 
-const CustomInput = ({ label, register, required, type }: CustomInputProps) => (
+const CustomInput = ({
+  name,
+  register,
+  required,
+  type,
+  label,
+}: CustomInputProps) => (
   <div className='flex flex-col capitalize'>
-    <label>{label}</label>
-    <input type={type} {...register(label, { required })} />
+    <label htmlFor={name}>{label}</label>
+    <input type={type} {...register(name as keyof InputValues, { required })} />
   </div>
 );
 
