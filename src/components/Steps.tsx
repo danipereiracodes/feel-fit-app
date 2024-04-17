@@ -16,7 +16,7 @@ const Steps: React.FC<StepsProps> = ({ currentStep, onSubmit }) => {
       return (
         <div className='transition-opacity ease-in-out delay-150 z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 w-[350px] md:w-[500px] lg:w-[750px] text-black font-extrabold text-2xl'>
           <CustomForm
-            title='Some information about you'
+            title='Lets start with some information about you'
             gridCols='grid-cols-3'
             onNextStep={onSubmit}
           />
@@ -26,7 +26,7 @@ const Steps: React.FC<StepsProps> = ({ currentStep, onSubmit }) => {
       return (
         <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 max-w-2/3 min-w-1/3 text-black font-extrabold text-2xl'>
           <CustomForm
-            title='Tell us about your diet or alergies'
+            title='Now tell us about your alergies or special diet'
             gridCols='grid-cols-1'
             onNextStep={onSubmit}
           />
