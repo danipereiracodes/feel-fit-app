@@ -18,10 +18,9 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   title,
   onNextStep,
 }) => {
-  const { register, handleSubmit, reset } = useForm<InputValues>();
+  const { register, handleSubmit, reset, control } = useForm<InputValues>();
 
-  const { fields } = useStepFields(register);
-
+  const { fields } = useStepFields(register, control);
   const inputData = useStepStore((state) => state.data);
   const updateData = useStepStore((state) => state.updateData);
 
