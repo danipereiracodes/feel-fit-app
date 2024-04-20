@@ -7,12 +7,14 @@ import ControlledInput from '../components/form-steps/form-fields/ControlledInpu
 import { GenderEnum } from '../enums/GenderEnums';
 import { DietEnum } from '../enums/DietEnums';
 import CustomCheckbox from '../components/form-steps/form-fields/CustomCheckbox';
+import { FastingFrequency } from '../enums/FastingFreqEnum';
 
 const useStepFields = (
   register: UseFormRegister<InputValues>,
   control: Control<InputValues>
 ) => {
   const currentStep = useStepStore((state) => state.step);
+  const isFasting = useStepStore((state) => state.data.fasting);
 
   const handleTextInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -21,9 +23,9 @@ const useStepFields = (
     e.target.value = formattedText;
   };
 
-  const enumToSelectOptions = (
-    enumObject: typeof GenderEnum | typeof DietEnum
-  ) => {
+  type EnumType = typeof GenderEnum | typeof DietEnum | typeof FastingFrequency;
+
+  const enumToSelectOptions = (enumObject: EnumType) => {
     return Object.keys(enumObject).map((key) => ({
       value: enumObject[key as keyof typeof enumObject],
       name: key,
@@ -32,6 +34,7 @@ const useStepFields = (
 
   const genderOptions = enumToSelectOptions(GenderEnum);
   const dietOptions = enumToSelectOptions(DietEnum);
+  const fastingOption = enumToSelectOptions(FastingFrequency);
 
   const getStepOneFields = () => [
     <CustomInput
@@ -114,10 +117,39 @@ const useStepFields = (
         />
       )}
     />,
+    isFasting && (
+      <CustomSelect
+        register={register}
+        label='How often?'
+        required
+        name='fastingFreq'
+        options={fastingOption}
+      />
+    ),
   ];
 
+  const getStepThreeFields = () => [
+    <div>
+      <h1>SPORTS</h1>
+      <span>{isFasting !== null && isFasting.toString()}</span>
+    </div>,
+  ];
+
+  const renderSteps = (step: number) => {
+    switch (step) {
+      case 1:
+        return getStepOneFields();
+      case 2:
+        return getStepTwoFields();
+      case 3:
+        return getStepThreeFields();
+      default:
+        break;
+    }
+  };
+
   return {
-    fields: currentStep === 1 ? getStepOneFields() : getStepTwoFields(),
+    fields: renderSteps(currentStep),
   };
 };
 
