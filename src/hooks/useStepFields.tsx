@@ -6,19 +6,20 @@ import { useStepStore } from '../store/StepStore';
 import ControlledInput from '../components/form-steps/form-fields/ControlledInput';
 import { GenderEnum } from '../enums/GenderEnums';
 import { DietEnum } from '../enums/DietEnums';
+import CustomCheckbox from '../components/form-steps/form-fields/CustomCheckbox';
 
 const useStepFields = (
   register: UseFormRegister<InputValues>,
   control: Control<InputValues>
 ) => {
+  const currentStep = useStepStore((state) => state.step);
+
   const handleTextInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     const splittedText = inputValue.split(/[,. ]+/);
     const formattedText = splittedText.join(', ');
     e.target.value = formattedText;
   };
-
-  const currentStep = useStepStore((state) => state.step);
 
   const enumToSelectOptions = (
     enumObject: typeof GenderEnum | typeof DietEnum
@@ -79,34 +80,40 @@ const useStepFields = (
   ];
 
   const getStepTwoFields = () => [
-    <>
-      {' '}
-      <CustomSelect
-        register={register}
-        label='diet'
-        required
-        name='diet'
-        options={dietOptions}
-      />
-      ,
-      <Controller
-        control={control}
-        name='allergies'
-        render={() => (
-          <ControlledInput
-            type='text'
-            label='Any allergies'
-            register={register}
-            onBlurHandler={handleTextInputBlur}
-            name='allergies'
-          />
-        )}
-      />
-      <span className='text-xs'>
-        (add them separated by comas or dots. Example: "gluten,lactose.shellfish
-        etc..")
-      </span>
-    </>,
+    <CustomSelect
+      register={register}
+      label='diet'
+      required
+      name='diet'
+      options={dietOptions}
+    />,
+    <Controller
+      control={control}
+      name='allergies'
+      render={() => (
+        <ControlledInput
+          type='text'
+          label='Any allergies?'
+          register={register}
+          onBlurHandler={handleTextInputBlur}
+          name='allergies'
+          spanText='Add them separated by comas or dots'
+        />
+      )}
+    />,
+    <Controller
+      control={control}
+      name='fasting'
+      render={() => (
+        <CustomCheckbox
+          required={false}
+          register={register}
+          title='I practice intermintent fasting'
+          type='checkbox'
+          name='fasting'
+        />
+      )}
+    />,
   ];
 
   return {

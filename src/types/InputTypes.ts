@@ -8,4 +8,5 @@ export interface InputValues {
   height: number;
   weight: number;
   gender: GenderEnum[];
+  fasting: boolean | undefined;
 }

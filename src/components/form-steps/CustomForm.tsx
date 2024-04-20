@@ -18,11 +18,17 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   title,
   onNextStep,
 }) => {
-  const { register, handleSubmit, reset, control } = useForm<InputValues>();
+  const { register, handleSubmit, reset, control, watch } =
+    useForm<InputValues>();
 
   const { fields } = useStepFields(register, control);
   const inputData = useStepStore((state) => state.data);
   const updateData = useStepStore((state) => state.updateData);
+  const watchFasting = watch('fasting');
+
+  useEffect(() => {
+    console.log('fasting is changing');
+  }, [watchFasting]);
 
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
