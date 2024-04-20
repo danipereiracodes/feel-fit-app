@@ -18,6 +18,7 @@ const initialState = {
   height: 0,
   gender: [],
   fasting: false,
+  fastingFreq: [],
 };
 
 export const useStepStore = create<IStep>((set) => ({

@@ -18,23 +18,16 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   title,
   onNextStep,
 }) => {
-  const { register, handleSubmit, reset, control, watch } =
-    useForm<InputValues>();
+  const { register, handleSubmit, control } = useForm<InputValues>();
 
   const { fields } = useStepFields(register, control);
   const inputData = useStepStore((state) => state.data);
   const updateData = useStepStore((state) => state.updateData);
-  const watchFasting = watch('fasting');
-
-  useEffect(() => {
-    console.log('fasting is changing');
-  }, [watchFasting]);
 
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
 
     onNextStep();
-    reset();
   };
 
   useEffect(() => {
@@ -43,9 +36,12 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   }, [inputData]);
 
   return (
-    <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className='relative flex flex-col min-h-96'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <fieldset
-        className={`grid ${String(gridCols)} gap-8 text-black text-start`}
+        className={` grid ${String(gridCols)} gap-8 text-black text-start`}
       >
         <legend className='w-full text-center mb-8'>{title}</legend>
         {fields &&
@@ -57,7 +53,7 @@ const CustomForm: React.FC<StepOneFormProps> = ({
         <Button
           type='submit'
           styles={
-            'z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+            'absolute bottom-0 left-0 right-0 mx-auto z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
           }
           text='Next Step'
         />

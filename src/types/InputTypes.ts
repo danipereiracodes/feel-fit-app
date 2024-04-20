@@ -1,3 +1,4 @@
+import { FastingFrequency } from '../enums/FastingFreqEnum';
 import { GenderEnum } from '../enums/GenderEnums';
 
 export interface InputValues {
@@ -8,5 +9,6 @@ export interface InputValues {
   height: number;
   weight: number;
   gender: GenderEnum[];
-  fasting: boolean | undefined;
+  fasting: boolean;
+  fastingFreq: FastingFrequency[];
 }
