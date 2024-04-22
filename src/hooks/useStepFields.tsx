@@ -7,7 +7,8 @@ import ControlledInput from '../components/form-steps/form-fields/ControlledInpu
 import { GenderEnum } from '../enums/GenderEnums';
 import { DietEnum } from '../enums/DietEnums';
 import CustomCheckbox from '../components/form-steps/form-fields/CustomCheckbox';
-import { FastingFrequency } from '../enums/FastingFreqEnum';
+import { FastingFrequencyEnum } from '../enums/FastingFreqEnum';
+import { ExerciseExpEnum, ExerciseFreqEnum } from '../enums/ExerciseExp';
 
 const useStepFields = (
   register: UseFormRegister<InputValues>,
@@ -23,7 +24,12 @@ const useStepFields = (
     e.target.value = formattedText;
   };
 
-  type EnumType = typeof GenderEnum | typeof DietEnum | typeof FastingFrequency;
+  type EnumType =
+    | typeof GenderEnum
+    | typeof DietEnum
+    | typeof FastingFrequencyEnum
+    | typeof ExerciseExpEnum
+    | typeof ExerciseFreqEnum;
 
   const enumToSelectOptions = (enumObject: EnumType) => {
     return Object.keys(enumObject).map((key) => ({
@@ -34,7 +40,9 @@ const useStepFields = (
 
   const genderOptions = enumToSelectOptions(GenderEnum);
   const dietOptions = enumToSelectOptions(DietEnum);
-  const fastingOption = enumToSelectOptions(FastingFrequency);
+  const fastingOption = enumToSelectOptions(FastingFrequencyEnum);
+  const exerciseOptions = enumToSelectOptions(ExerciseExpEnum);
+  const exerciseFreOptions = enumToSelectOptions(ExerciseFreqEnum);
 
   const getStepOneFields = () => [
     <CustomInput
@@ -101,6 +109,7 @@ const useStepFields = (
           onBlurHandler={handleTextInputBlur}
           name='allergies'
           spanText='Add them separated by comas or dots'
+          placeHolder='gluten,soy...'
         />
       )}
     />,
@@ -129,10 +138,36 @@ const useStepFields = (
   ];
 
   const getStepThreeFields = () => [
-    <div>
-      <h1>SPORTS</h1>
-      <span>{isFasting !== null && isFasting.toString()}</span>
-    </div>,
+    <CustomSelect
+      register={register}
+      label='Exercise experience'
+      required
+      name='exerciseExp'
+      options={exerciseOptions}
+    />,
+
+    <CustomSelect
+      register={register}
+      label='How often?'
+      required
+      name='exerciseFreq'
+      options={exerciseFreOptions}
+    />,
+    <Controller
+      control={control}
+      name='injuries'
+      render={() => (
+        <ControlledInput
+          type='text'
+          label='Any injuries?'
+          register={register}
+          onBlurHandler={handleTextInputBlur}
+          name='injuries'
+          spanText='Add them separated by comas or dots'
+          placeHolder='back hernia...'
+        />
+      )}
+    />,
   ];
 
   const renderSteps = (step: number) => {
@@ -143,6 +178,7 @@ const useStepFields = (
         return getStepTwoFields();
       case 3:
         return getStepThreeFields();
+
       default:
         break;
     }

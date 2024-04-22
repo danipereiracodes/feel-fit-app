@@ -14,21 +14,29 @@ const MainContent: React.FC = () => {
   const setStep = useStepStore((state) => state.addStep);
   /* const [tips, setTips] = useState<string>('Loading...'); */
 
-  const handleSubmit = () => {
+  const handleStepBack = () => {
+    setStep(step - 1);
+  };
+
+  const handleStepForward = () => {
     setStep(step + 1);
   };
 
   return (
-    <section className='relative flex flex-col gap-8 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
+    <section className='relative flex flex-col gap-8 p-12 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
 
-      <Steps currentStep={step} onSubmit={handleSubmit} />
+      <Steps
+        currentStep={step}
+        onNextStep={handleStepForward}
+        onPrevStep={handleStepBack}
+      />
 
       {step === 0 && (
         <div className='flex items-center gap-4 z-20 text-white font-normal text-md'>
           <Button
             type='button'
-            onClick={handleSubmit}
+            onClick={handleStepForward}
             text='Start'
             styles='uppercase border-4 border-bright-secondary  rounded-xl w-32  py-2 px-6 hover:bg-bright-secondary'
           />
