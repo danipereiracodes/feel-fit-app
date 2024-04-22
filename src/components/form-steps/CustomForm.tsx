@@ -4,7 +4,7 @@ import { useStepStore } from '../../store/StepStore';
 import useStepFields from '../../hooks/useStepFields';
 import { InputValues } from '../../types/InputTypes';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '../buttons/Buton';
 
@@ -21,8 +21,8 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   onNextStep,
   onPrevStep,
 }) => {
-  const { register, handleSubmit, control } = useForm<InputValues>();
-
+  const { register, handleSubmit, control, reset } = useForm<InputValues>();
+  const [formData, setFormData] = useState<InputValues | null>(null);
   const { fields } = useStepFields(register, control);
   const inputData = useStepStore((state) => state.data);
   const updateData = useStepStore((state) => state.updateData);
@@ -33,10 +33,23 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   };
 
   useEffect(() => {
-    localStorage.setItem('step1', JSON.stringify(inputData));
+    const savedData = localStorage.getItem('user-data');
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      setFormData(parsedData);
+    }
+  }, []);
 
-    console.log(inputData);
+  useEffect(() => {
+    localStorage.setItem('user-data', JSON.stringify(inputData));
+    console.log('<------ inputdata ', inputData);
   }, [inputData]);
+
+  useEffect(() => {
+    if (formData) {
+      reset(formData);
+    }
+  }, [formData, reset]);
 
   return (
     <>
