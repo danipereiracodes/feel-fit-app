@@ -9,6 +9,7 @@ interface CustomInputProps {
   label: string;
   onBlurHandler: (e: React.FocusEvent<HTMLInputElement>) => void;
   spanText: string | undefined;
+  placeHolder: string;
 }
 
 const CustomInput = ({
@@ -19,6 +20,7 @@ const CustomInput = ({
   required,
   type,
   label,
+  placeHolder,
 }: CustomInputProps) => {
   return (
     <div className='flex flex-col '>
@@ -27,7 +29,7 @@ const CustomInput = ({
         type={type}
         {...register(name as keyof InputValues, { required })}
         onBlur={onBlurHandler}
-        placeholder='gluten,soy...'
+        placeholder={placeHolder}
       />
       {spanText && <span className='text-sm text-gray-800'>{spanText}</span>}
     </div>

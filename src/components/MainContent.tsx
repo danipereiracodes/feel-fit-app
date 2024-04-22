@@ -19,7 +19,7 @@ const MainContent: React.FC = () => {
   };
 
   return (
-    <section className='relative flex flex-col gap-8 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
+    <section className='relative flex flex-col gap-8 p-12 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
 
       <Steps currentStep={step} onSubmit={handleSubmit} />
