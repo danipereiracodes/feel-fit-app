@@ -6,6 +6,7 @@ interface IStep {
   addStep: (newStep: number) => void;
   data: InputValues;
   updateData: (newData: InputValues) => void;
+  updateFasting: (newFasting: boolean) => void;
 }
 
 const initialState = {
@@ -16,6 +17,8 @@ const initialState = {
   weight: 0,
   height: 0,
   gender: [],
+  fasting: false,
+  fastingFreq: [],
 };
 
 export const useStepStore = create<IStep>((set) => ({
@@ -25,4 +28,7 @@ export const useStepStore = create<IStep>((set) => ({
 
   updateData: (newData: InputValues) =>
     set((state) => ({ data: { ...state.data, ...newData } })),
+
+  updateFasting: (newFasting: boolean) =>
+    set((state) => ({ data: { ...state.data, fasting: newFasting } })),
 }));

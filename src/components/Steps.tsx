@@ -27,7 +27,7 @@ const Steps: React.FC<StepsProps> = ({ currentStep, onSubmit }) => {
         <div className='z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 max-w-2/3 min-w-1/3 text-black font-extrabold text-2xl'>
           <CustomForm
             title='Now tell us about your alergies or special diet'
-            gridCols='grid-cols-1'
+            gridCols='grid-cols-2'
             onNextStep={onSubmit}
           />
         </div>
