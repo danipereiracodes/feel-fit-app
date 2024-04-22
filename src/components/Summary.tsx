@@ -103,7 +103,7 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep }) => {
           {allergies !== '' ? (
             <tr className='flex flex-col border border-1  '>
               <td className='bg-bright-secondary px-4 '>Allergies</td>
-              <td className='px-4 py-2 sm:px-6 sm:py-4 whitespace-nowrap bg-white h-full'>
+              <td className='px-4 py-2 sm:px-6 sm:py-4 whitespace-nowrap bg-white h-full overflow-x-auto'>
                 {allergies}
               </td>
             </tr>

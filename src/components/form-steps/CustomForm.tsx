@@ -1,12 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useStepStore } from '../../store/StepStore';
-import useStepFields from '../../hooks/useStepFields';
-import { InputValues } from '../../types/InputTypes';
-
-import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '../buttons/Buton';
+import useCustomForm from '../../hooks/useCustomForm';
 
 interface StepOneFormProps {
   title: string;
@@ -21,36 +15,11 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   onNextStep,
   onPrevStep,
 }) => {
-  const { register, handleSubmit, control, reset } = useForm<InputValues>();
-  const [formData, setFormData] = useState<InputValues | null>(null);
-  const { fields } = useStepFields(register, control);
-  const inputData = useStepStore((state) => state.data);
-  const updateData = useStepStore((state) => state.updateData);
-
-  const onSubmit: SubmitHandler<InputValues> = (data) => {
-    updateData(data);
-    onNextStep();
-  };
-
-  useEffect(() => {
-    const savedData = localStorage.getItem('user-data');
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-      setFormData(parsedData);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('user-data', JSON.stringify(inputData));
-    console.log('<------ inputdata ', inputData);
-  }, [inputData]);
-
-  useEffect(() => {
-    if (formData) {
-      reset(formData);
-    }
-  }, [formData, reset]);
-
+  const {
+    fields,
+    handleSubmit,
+    onPrevStep: handlePrevStep,
+  } = useCustomForm(onNextStep, onPrevStep);
   return (
     <>
       <form className='flex flex-col'>
@@ -67,7 +36,7 @@ const CustomForm: React.FC<StepOneFormProps> = ({
       </form>
       <div className='gap-4 col-span-full  text-end mt-8'>
         <Button
-          onClick={onPrevStep}
+          onClick={handlePrevStep}
           type='button'
           styles={
             'w-24 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
@@ -75,7 +44,7 @@ const CustomForm: React.FC<StepOneFormProps> = ({
           text='Go back'
         />
         <Button
-          onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit}
           type='button'
           styles={
             'w-24 ml-4 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
