@@ -1,4 +1,4 @@
-export enum FastingFrequency {
+export enum FastingFrequencyEnum {
   SIXTEEN = '16/8',
   EIGHTEEN = '18/6',
   TWENTY = '20/4',
