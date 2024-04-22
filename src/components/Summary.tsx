@@ -2,7 +2,11 @@
 import { useStepStore } from '../store/StepStore';
 import Button from './buttons/Buton';
 
-const Summary: React.FC = () => {
+interface SummaryProps {
+  onPrevStep: () => void;
+}
+
+const Summary: React.FC<SummaryProps> = ({ onPrevStep }) => {
   /* const {
     name,
     lastname,
@@ -126,13 +130,21 @@ const Summary: React.FC = () => {
           ) : null}
         </tbody>
       </table>
-      <div className='button-container text-end mt-8'>
+      <div className='gap-4 col-span-full  text-end mt-8'>
+        <Button
+          onClick={onPrevStep}
+          type='button'
+          styles={
+            'w-24 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+          }
+          text='Go back'
+        />
         <Button
           type='button'
           styles={
-            'w-1/3 mx-auto z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+            'w-24 ml-4 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
           }
-          text='Get plan!'
+          text='Next'
         />
       </div>
     </>
