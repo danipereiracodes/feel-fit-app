@@ -36,29 +36,30 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   }, [inputData]);
 
   return (
-    <form
-      className='relative flex flex-col min-h-96'
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <fieldset
-        className={` grid ${String(gridCols)} gap-8 text-black text-start`}
-      >
-        <legend className='w-full text-center mb-8'>{title}</legend>
-        {fields &&
-          fields.map((elements) => {
-            const uniqueKey = uuidv4();
-            return <div key={uniqueKey}>{elements}</div>;
-          })}
-
+    <>
+      <form className='flex flex-col'>
+        <fieldset
+          className={` grid ${String(gridCols)} gap-8 text-black text-start`}
+        >
+          <legend className='w-full text-center mb-8'>{title}</legend>
+          {fields &&
+            fields.map((elements) => {
+              const uniqueKey = uuidv4();
+              return <div key={uniqueKey}>{elements}</div>;
+            })}
+        </fieldset>
+      </form>
+      <div className='button-container text-end mt-8'>
         <Button
-          type='submit'
+          type='button'
           styles={
-            'absolute bottom-0 left-0 right-0 mx-auto z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+            'w-1/3 mx-auto z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
           }
-          text='Next Step'
+          text='Next'
+          onClick={handleSubmit(onSubmit)}
         />
-      </fieldset>
-    </form>
+      </div>
+    </>
   );
 };
 
