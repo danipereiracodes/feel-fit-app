@@ -6,11 +6,16 @@ import { useStepStore } from '../store/StepStore';
 import ControlledInput from '../components/form-steps/form-fields/ControlledInput';
 import { GenderEnum } from '../enums/GenderEnums';
 import { DietEnum } from '../enums/DietEnums';
+import CustomCheckbox from '../components/form-steps/form-fields/CustomCheckbox';
+import { FastingFrequency } from '../enums/FastingFreqEnum';
 
 const useStepFields = (
   register: UseFormRegister<InputValues>,
   control: Control<InputValues>
 ) => {
+  const currentStep = useStepStore((state) => state.step);
+  const isFasting = useStepStore((state) => state.data.fasting);
+
   const handleTextInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     const splittedText = inputValue.split(/[,. ]+/);
@@ -18,11 +23,9 @@ const useStepFields = (
     e.target.value = formattedText;
   };
 
-  const currentStep = useStepStore((state) => state.step);
+  type EnumType = typeof GenderEnum | typeof DietEnum | typeof FastingFrequency;
 
-  const enumToSelectOptions = (
-    enumObject: typeof GenderEnum | typeof DietEnum
-  ) => {
+  const enumToSelectOptions = (enumObject: EnumType) => {
     return Object.keys(enumObject).map((key) => ({
       value: enumObject[key as keyof typeof enumObject],
       name: key,
@@ -31,6 +34,7 @@ const useStepFields = (
 
   const genderOptions = enumToSelectOptions(GenderEnum);
   const dietOptions = enumToSelectOptions(DietEnum);
+  const fastingOption = enumToSelectOptions(FastingFrequency);
 
   const getStepOneFields = () => [
     <CustomInput
@@ -79,38 +83,73 @@ const useStepFields = (
   ];
 
   const getStepTwoFields = () => [
-    <>
-      {' '}
+    <CustomSelect
+      register={register}
+      label='diet'
+      required
+      name='diet'
+      options={dietOptions}
+    />,
+    <Controller
+      control={control}
+      name='allergies'
+      render={() => (
+        <ControlledInput
+          type='text'
+          label='Any allergies?'
+          register={register}
+          onBlurHandler={handleTextInputBlur}
+          name='allergies'
+          spanText='Add them separated by comas or dots'
+        />
+      )}
+    />,
+    <Controller
+      control={control}
+      name='fasting'
+      render={() => (
+        <CustomCheckbox
+          required={false}
+          register={register}
+          title='I practice intermintent fasting'
+          type='checkbox'
+          name='fasting'
+        />
+      )}
+    />,
+    isFasting && (
       <CustomSelect
         register={register}
-        label='diet'
+        label='How often?'
         required
-        name='diet'
-        options={dietOptions}
+        name='fastingFreq'
+        options={fastingOption}
       />
-      ,
-      <Controller
-        control={control}
-        name='allergies'
-        render={() => (
-          <ControlledInput
-            type='text'
-            label='Any allergies'
-            register={register}
-            onBlurHandler={handleTextInputBlur}
-            name='allergies'
-          />
-        )}
-      />
-      <span className='text-xs'>
-        (add them separated by comas or dots. Example: "gluten,lactose.shellfish
-        etc..")
-      </span>
-    </>,
+    ),
   ];
 
+  const getStepThreeFields = () => [
+    <div>
+      <h1>SPORTS</h1>
+      <span>{isFasting !== null && isFasting.toString()}</span>
+    </div>,
+  ];
+
+  const renderSteps = (step: number) => {
+    switch (step) {
+      case 1:
+        return getStepOneFields();
+      case 2:
+        return getStepTwoFields();
+      case 3:
+        return getStepThreeFields();
+      default:
+        break;
+    }
+  };
+
   return {
-    fields: currentStep === 1 ? getStepOneFields() : getStepTwoFields(),
+    fields: renderSteps(currentStep),
   };
 };
 
