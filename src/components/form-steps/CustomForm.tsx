@@ -3,20 +3,23 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useStepStore } from '../../store/StepStore';
 import useStepFields from '../../hooks/useStepFields';
 import { InputValues } from '../../types/InputTypes';
-import Button from '../buttons/Buton';
+
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../buttons/Buton';
 
 interface StepOneFormProps {
   title: string;
   gridCols: string;
   onNextStep: () => void;
+  onPrevStep: () => void;
 }
 
 const CustomForm: React.FC<StepOneFormProps> = ({
   gridCols,
   title,
   onNextStep,
+  onPrevStep,
 }) => {
   const { register, handleSubmit, control } = useForm<InputValues>();
 
@@ -26,12 +29,12 @@ const CustomForm: React.FC<StepOneFormProps> = ({
 
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
-
     onNextStep();
   };
 
   useEffect(() => {
     localStorage.setItem('step1', JSON.stringify(inputData));
+
     console.log(inputData);
   }, [inputData]);
 
@@ -49,14 +52,22 @@ const CustomForm: React.FC<StepOneFormProps> = ({
             })}
         </fieldset>
       </form>
-      <div className='button-container text-end mt-8'>
+      <div className='gap-4 col-span-full  text-end mt-8'>
         <Button
+          onClick={onPrevStep}
           type='button'
           styles={
-            'w-1/3 mx-auto z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+            'w-24 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+          }
+          text='Go back'
+        />
+        <Button
+          onClick={handleSubmit(onSubmit)}
+          type='button'
+          styles={
+            'w-24 ml-4 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
           }
           text='Next'
-          onClick={handleSubmit(onSubmit)}
         />
       </div>
     </>

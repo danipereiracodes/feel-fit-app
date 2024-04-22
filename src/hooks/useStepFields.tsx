@@ -178,6 +178,7 @@ const useStepFields = (
         return getStepTwoFields();
       case 3:
         return getStepThreeFields();
+
       default:
         break;
     }
