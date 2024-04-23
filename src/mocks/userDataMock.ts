@@ -1,5 +1,9 @@
 import { DietEnum } from '../enums/DietEnums';
-import { ExerciseExpEnum, ExerciseFreqEnum } from '../enums/ExerciseExp';
+import {
+  ExerciseExpEnum,
+  ExerciseFreqEnum,
+  FitnessGoal,
+} from '../enums/ExerciseExp';
 import { FastingFrequencyEnum } from '../enums/FastingFreqEnum';
 import { GenderEnum } from '../enums/GenderEnums';
 import { InputValues } from '../types/InputTypes';
@@ -18,4 +22,5 @@ export const mockInputValues: InputValues = {
   injuries: null,
   exerciseFreq: [ExerciseFreqEnum.EVERYDAY],
   exerciseExp: [ExerciseExpEnum.BEGINNER],
+  goal: [FitnessGoal.GENERALFITNESS],
 };
