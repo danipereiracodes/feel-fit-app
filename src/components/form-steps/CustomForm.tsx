@@ -22,11 +22,13 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   } = useCustomForm(onNextStep, onPrevStep);
   return (
     <>
-      <form className='flex flex-col'>
+      <form className='flex flex-col '>
         <fieldset
           className={` grid ${String(gridCols)} gap-8 text-black text-start`}
         >
-          <legend className='w-full text-center mb-8'>{title}</legend>
+          <legend className='w-full text-center mb-8 text-2xl font-bold'>
+            {title}
+          </legend>
           {fields &&
             fields.map((elements) => {
               const uniqueKey = uuidv4();
@@ -34,20 +36,20 @@ const CustomForm: React.FC<StepOneFormProps> = ({
             })}
         </fieldset>
       </form>
-      <div className='gap-4 col-span-full  text-end mt-8'>
+      <div className='flex gap-4 col-span-full text-end flex-1 justify-end pb-4 mt-4'>
         <Button
           onClick={handlePrevStep}
           type='button'
           styles={
-            'w-24 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+            'px-4 z-20 bg-gray-700 rounded-lg py-2 text-white font-normal text-lg col-span-2 place-self-end  hover:scale-110 transition duration-300 ease-in-out'
           }
-          text='Go back'
+          text='Back'
         />
         <Button
           onClick={handleSubmit}
           type='button'
           styles={
-            'w-24 ml-4 z-20 bg-bright-secondary rounded-xl py-2 text-white font-normal text-lg col-span-2 w-52 place-self-end'
+            'px-4 ml-4 z-20 bg-bright-secondary rounded-lg py-2 text-white font-normal text-lg col-span-2 place-self-end  hover:scale-110 transition duration-300 ease-in-out'
           }
           text='Next'
         />
