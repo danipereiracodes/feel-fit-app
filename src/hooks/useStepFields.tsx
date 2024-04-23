@@ -8,7 +8,11 @@ import { GenderEnum } from '../enums/GenderEnums';
 import { DietEnum } from '../enums/DietEnums';
 import CustomCheckbox from '../components/form-steps/form-fields/CustomCheckbox';
 import { FastingFrequencyEnum } from '../enums/FastingFreqEnum';
-import { ExerciseExpEnum, ExerciseFreqEnum } from '../enums/ExerciseExp';
+import {
+  ExerciseExpEnum,
+  ExerciseFreqEnum,
+  FitnessGoal,
+} from '../enums/ExerciseExp';
 
 const useStepFields = (
   register: UseFormRegister<InputValues>,
@@ -29,7 +33,8 @@ const useStepFields = (
     | typeof DietEnum
     | typeof FastingFrequencyEnum
     | typeof ExerciseExpEnum
-    | typeof ExerciseFreqEnum;
+    | typeof ExerciseFreqEnum
+    | typeof FitnessGoal;
 
   const enumToSelectOptions = (enumObject: EnumType) => {
     return Object.keys(enumObject).map((key) => ({
@@ -43,6 +48,7 @@ const useStepFields = (
   const fastingOption = enumToSelectOptions(FastingFrequencyEnum);
   const exerciseOptions = enumToSelectOptions(ExerciseExpEnum);
   const exerciseFreOptions = enumToSelectOptions(ExerciseFreqEnum);
+  const fitnessGoalOptions = enumToSelectOptions(FitnessGoal);
 
   const getStepOneFields = () => [
     <CustomInput
@@ -51,13 +57,15 @@ const useStepFields = (
       label='Name'
       register={register}
       required
+      placeholder='Jane'
     />,
     <CustomInput
       type='text'
       name='lastname'
       label='Lastname'
       register={register}
-      required
+      required={false}
+      placeholder='Doe'
     />,
     <CustomSelect
       register={register}
@@ -73,6 +81,7 @@ const useStepFields = (
       label='How old?'
       register={register}
       required
+      placeholder='35'
     />,
     <CustomInput
       type='number'
@@ -80,6 +89,7 @@ const useStepFields = (
       label='Weight(kg)'
       register={register}
       required
+      placeholder='50'
     />,
     <CustomInput
       type='number'
@@ -87,13 +97,14 @@ const useStepFields = (
       label='Height(cm)'
       register={register}
       required
+      placeholder='162'
     />,
   ];
 
   const getStepTwoFields = () => [
     <CustomSelect
       register={register}
-      label='diet'
+      label='How you eat'
       required
       name='diet'
       options={dietOptions}
@@ -126,15 +137,14 @@ const useStepFields = (
         />
       )}
     />,
-    isFasting && (
-      <CustomSelect
-        register={register}
-        label='How often?'
-        required
-        name='fastingFreq'
-        options={fastingOption}
-      />
-    ),
+    <CustomSelect
+      register={register}
+      label='How often?'
+      required
+      name='fastingFreq'
+      options={fastingOption}
+      disabled={!isFasting}
+    />,
   ];
 
   const getStepThreeFields = () => [
@@ -167,6 +177,13 @@ const useStepFields = (
           placeHolder='back hernia...'
         />
       )}
+    />,
+    <CustomSelect
+      register={register}
+      label='Fitness Goal?'
+      required
+      name='goal'
+      options={fitnessGoalOptions}
     />,
   ];
 

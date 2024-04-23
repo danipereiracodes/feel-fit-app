@@ -12,3 +12,16 @@ export enum ExerciseFreqEnum {
   FIVE = '5 days/week',
   EVERYDAY = 'Everyday',
 }
+
+export enum FitnessGoal {
+  WEIGHTLOSS = 'Weight Loss',
+  MUSCLEGAIN = 'Muscle Gain',
+  GENERALFITNESS = 'General Fitness',
+  BODYRECOMPOSITION = 'Body Recomposition',
+  STRENGTHTRAINING = 'Strength Training',
+  ENDURANCETRAINING = 'Endurance Training',
+  FLEXIBILITYIMPROVEMENT = 'Flexibility Improvement',
+  FUNCTIONALFITNESS = 'Functional Fitness',
+  SPORTSPERFORMANCEENHANCEMENT = 'Sports Performance Enhancement',
+  INJURYREHABILITATION = 'Injury Rehabilitation',
+}
