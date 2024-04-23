@@ -1,27 +1,16 @@
-import { ReactNode } from 'react';
 import { useStepStore } from '../store/StepStore';
 import HomeBanner from './HomeBanner';
 
 import CustomForm from './form-steps/CustomForm';
 import Summary from './Summary';
+import Plan from './Plan';
+import FormLayout from './layouts/FormLayout';
 
 interface StepsProps {
   currentStep: number;
   onNextStep: () => void;
   onPrevStep: () => void;
 }
-
-interface FormLayoutProps {
-  children: ReactNode;
-}
-
-const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
-  return (
-    <div className='transition-opacity ease-in-out delay-150 z-20 backdrop-blur-sm bg-white/30 rounded-xl p-8 min-h-[500px] w-[350px] md:w-[500px] lg:w-[750px] text-black font-extrabold text-2xl'>
-      {children}
-    </div>
-  );
-};
 
 const Steps: React.FC<StepsProps> = ({
   currentStep,
@@ -63,7 +52,10 @@ const Steps: React.FC<StepsProps> = ({
       );
       break;
     case 4:
-      stepContent = <Summary onPrevStep={onPrevStep} />;
+      stepContent = <Summary onPrevStep={onPrevStep} onNextStep={onNextStep} />;
+      break;
+    case 5:
+      stepContent = <Plan />;
       break;
     default:
       setStep(0);
@@ -74,7 +66,14 @@ const Steps: React.FC<StepsProps> = ({
   return currentStep === 0 ? (
     <HomeBanner />
   ) : (
-    <FormLayout>{stepContent}</FormLayout>
+    <>
+      {currentStep !== 4 && currentStep !== 5 && (
+        <FormLayout>{stepContent}</FormLayout>
+      )}
+
+      {currentStep === 4 && stepContent}
+      {currentStep === 5 && stepContent}
+    </>
   );
 };
 
