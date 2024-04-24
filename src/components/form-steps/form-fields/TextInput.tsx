@@ -1,55 +1,55 @@
 import { FieldError, UseFormRegister } from 'react-hook-form';
 import { InputValues } from '../../../types/InputTypes';
 
-interface ControlledInputProps {
+interface TextInputProps {
   name: string;
   register: UseFormRegister<InputValues>;
   required?: boolean;
-  type: string;
+  maxLength: number;
+  minLength: number;
   label: string;
-  onBlurHandler: (e: React.FocusEvent<HTMLInputElement>) => void;
-  spanText: string | undefined;
-  placeHolder: string;
+  placeholder: string;
   error?: FieldError;
 }
 
-const ControlledInput = ({
+const TextInput = ({
   name,
-  onBlurHandler,
   register,
-  spanText,
-  error,
-  type,
   label,
-
-  required,
-}: ControlledInputProps) => {
-  const textDotsandComasPattern = /^[a-zA-Z,.\\s]*$/;
-
-  const validateRequired = required ? `required` : required;
+  placeholder,
+  error,
+  maxLength,
+  minLength,
+}: TextInputProps) => {
+  const textPattern = /^[a-zA-Z\s]*$/;
 
   const validationRules = {
-    required: validateRequired,
+    required: `required`,
     pattern: {
-      value: textDotsandComasPattern,
-      message: 'Text characters and comas only',
+      value: textPattern,
+      message: 'only text characters',
+    },
+    maxLength: {
+      value: maxLength,
+      message: `too long`,
+    },
+    minLength: {
+      value: minLength,
+      message: `too short`,
     },
   };
 
   return (
     <div className='relative flex flex-col '>
       <label htmlFor={name}>{label}</label>
-
       <input
-        type={type}
+        placeholder={placeholder}
+        type='text'
         {...register(name as keyof InputValues, validationRules)}
-        onBlur={onBlurHandler}
-        placeholder={spanText}
         className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
       />
-
       {error && (
-        <p className='absolute -bottom-6 left-0 text-sm text-gray-700 font-bold font-bold'>
+        <p className='absolute -bottom-6 left-0 text-sm text-gray-700  font-bold'>
           *{error.message}
         </p>
       )}
@@ -57,4 +57,4 @@ const ControlledInput = ({
   );
 };
 
-export default ControlledInput;
+export default TextInput;
