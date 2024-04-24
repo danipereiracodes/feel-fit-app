@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
 import Button from '../buttons/Buton';
 import useCustomForm from '../../hooks/useCustomForm';
+import { useStepStore } from '../../store/StepStore';
 
 interface StepOneFormProps {
   title: string;
@@ -16,10 +16,11 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   onPrevStep,
 }) => {
   const {
-    fields,
+    renderSteps,
     handleSubmit,
     onPrevStep: handlePrevStep,
   } = useCustomForm(onNextStep, onPrevStep);
+  const currentStep = useStepStore((state) => state.step);
   return (
     <>
       <form className='flex flex-col '>
@@ -29,11 +30,9 @@ const CustomForm: React.FC<StepOneFormProps> = ({
           <legend className='w-full text-center mb-8 text-2xl font-bold'>
             {title}
           </legend>
-          {fields &&
-            fields.map((elements) => {
-              const uniqueKey = uuidv4();
-              return <div key={uniqueKey}>{elements}</div>;
-            })}
+          {renderSteps(currentStep)?.map((element, index) => (
+            <div key={index}>{element}</div>
+          ))}
         </fieldset>
       </form>
       <div className='flex gap-4 col-span-full text-end flex-1 justify-end pb-4 mt-4'>
