@@ -1,10 +1,21 @@
 const HomeBanner: React.FC = () => {
   return (
-    <div className='z-20 flex flex-col gap-4 items-center text-center w-2/3 text-white text-2xl font-bold'>
-      <h1>
-        Get your weekly meal prep and exercise plan{' '}
-        <span className='font-bold underline'>in seconds</span>, starting now!
-      </h1>
+    <div className='z-20 flex flex-col gap-4 items-center text-center p-8 text-white '>
+      <h1 className='text-4xl text-bright-primary'>Welcome to feel-fit</h1>
+      <p className='text-lg'>
+        You can stop spending half a day watching tens of YouTube and Tiktok
+        videos seeking motivation.
+        <br />
+        Just
+        <span className='font-bold text-xl text-bright-primary ml-1'>
+          press start
+        </span>{' '}
+        and get a full week meal prep and exercise plan in seconds to{' '}
+        <span className='font-bold text-bright-primary ml-1 text-xl'>
+          {' '}
+          start taking action.
+        </span>
+      </p>
     </div>
   );
 };

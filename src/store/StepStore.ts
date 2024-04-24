@@ -13,9 +13,9 @@ const initialState = {
   name: '',
   lastname: '',
   allergies: '',
-  age: 0,
-  weight: 0,
-  height: 0,
+  age: null,
+  weight: null,
+  height: null,
   gender: [],
   fasting: false,
   fastingFreq: [],
@@ -23,6 +23,7 @@ const initialState = {
   diet: [],
   exerciseFreq: [],
   exerciseExp: [],
+  goal: [],
 };
 
 export const useStepStore = create<IStep>((set) => ({

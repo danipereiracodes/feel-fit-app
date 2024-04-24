@@ -33,22 +33,16 @@ const MainContent: React.FC = () => {
       />
 
       {step === 0 && (
-        <div className='flex items-center gap-4 z-20 text-white font-normal text-md'>
+        <div className='flex items-center gap-4 z-20 text-white hover:scale-110 transition duration-300 ease-in-out'>
           <Button
             type='button'
             onClick={handleStepForward}
             text='Start'
-            styles='uppercase border-4 border-bright-secondary  rounded-xl w-32  py-2 px-6 hover:bg-bright-secondary'
-          />
-
-          <Button
-            type='button'
-            text='Login'
-            styles='uppercase border-4 border-bright-secondary  w-32 rounded-xl py-2 px-6 hover:bg-bright-secondary '
+            styles='uppercase w-32  py-2 px-6 bg-bright-secondary rounded-xl'
           />
         </div>
       )}
-      {/* TODO: TIP COMPONENT <div className='fixed top-8 left-24 w-[150px] h-[150px] flex flex-wrap rounded-xl bg-black text-white p-4 text-ellipsis line-clamp-3'>
+      {/* TODO: TIP COMPONENT <div className='fixed top-8 left-24 w-[150px] h-[150px] flex flex-wrap  bg-black text-white p-4 text-ellipsis line-clamp-3'>
         <div className=' relative  flex items-center no-wrap '>
           <img src={myBulb} alt='bulb'></img>{' '}
           <span className='mt-8'>{tips}</span>
