@@ -1,6 +1,6 @@
 import { UseFormRegister } from 'react-hook-form';
-import { InputValues } from '../../../types/InputTypes';
-import { useStepStore } from '../../../store/StepStore';
+import { InputValues } from '../../types/InputTypes';
+import { useStepStore } from '../../store/StepStore';
 import { useEffect } from 'react';
 
 interface CustomCheckbox {
@@ -31,7 +31,7 @@ function CustomCheckbox({
     updateFasting(newCheckedState);
   };
   return (
-    <>
+    <div className='col-span-1'>
       <input
         id={name}
         type={type}
@@ -39,8 +39,8 @@ function CustomCheckbox({
         onChange={handleCheckboxChange}
         checked={isChecked}
       />
-      <label htmlFor={name}>{title}</label>
-    </>
+      <label>{title}</label>
+    </div>
   );
 }
 
