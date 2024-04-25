@@ -1,6 +1,6 @@
-import Footer from './components/Footer';
-import Header from './components/Header';
-import MainContent from './components/MainContent';
+import Footer from '../organisms/Footer';
+import Header from '../organisms/Header';
+import MainContent from '../organisms/MainContent';
 
 function App() {
   return (

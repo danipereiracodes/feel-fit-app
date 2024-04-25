@@ -1,10 +1,10 @@
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
-import { InputValues } from '../../types/InputTypes';
-import { GenderEnum } from '../../types/enums/GenderEnums';
-import CustomSelect from '../form-steps/form-fields/CustomSelect';
-import NumberInput from '../form-steps/form-fields/NumberInput';
-import TextInput from '../form-steps/form-fields/TextInput';
-import { enumToSelectOptions } from '../../utils/EnumToSelectOptions';
+import { InputValues } from '../../../types/InputTypes';
+import { GenderEnum } from '../../../types/enums/GenderEnums';
+import CustomSelect from '../../molecules/CustomSelect';
+import NumberInput from '../../molecules/NumberInput';
+import TextInput from '../../molecules/TextInput';
+import { enumToSelectOptions } from '../../../utils/EnumToSelectOptions';
 
 interface StepOneFieldsProps {
   register: UseFormRegister<InputValues>;

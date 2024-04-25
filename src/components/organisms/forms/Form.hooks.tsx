@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useStepStore } from '../store/StepStore';
-import { InputValues } from '../types/InputTypes';
-import useSteps from './useSteps';
+import { useStepStore } from '../../../store/StepStore';
+import { InputValues } from '../../../types/InputTypes';
+import useSteps from '../steps/Steps.hooks';
 
 const useCustomForm = (onNextStep: () => void, onPrevStep: () => void) => {
   const {

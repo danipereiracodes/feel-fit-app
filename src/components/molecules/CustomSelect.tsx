@@ -1,5 +1,5 @@
 import { FieldError, Merge, UseFormRegister } from 'react-hook-form';
-import { InputValues } from '../../../types/InputTypes';
+import { InputValues } from '../../types/InputTypes';
 
 interface CustomSelectProps {
   name: string;

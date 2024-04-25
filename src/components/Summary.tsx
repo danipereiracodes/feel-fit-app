@@ -1,7 +1,7 @@
 /* import { mockInputValues } from '../mocks/userDataMock'; */
-import { useEffect, useState } from 'react';
-import { useStepStore } from '../store/StepStore';
-import Button from './buttons/Buton';
+
+import useSummary from './Summary.hooks';
+import Button from './atoms/Buton';
 
 interface SummaryProps {
   onPrevStep: () => void;
@@ -9,24 +9,7 @@ interface SummaryProps {
 }
 
 const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep }) => {
-  const [loading, setLoading] = useState(false);
-  /* const {
-    name,
-    lastname,
-    age,
-    gender,
-    height,
-    weight,
-    allergies,
-    fasting,
-    fastingFreq,
-    injuries,
-    diet,
-    exerciseExp,
-    exerciseFreq,
-  } = mockInputValues; */
-
-  const data = useStepStore((state) => state.data);
+  const { data, loading } = useSummary();
   const {
     age,
     gender,
@@ -41,14 +24,6 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep }) => {
     exerciseFreq,
     goal,
   } = data;
-
-  useEffect(() => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
 
   return loading ? (
     <div className='loader'></div>
