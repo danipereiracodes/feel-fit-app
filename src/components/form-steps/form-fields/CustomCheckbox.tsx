@@ -39,7 +39,7 @@ function CustomCheckbox({
         onChange={handleCheckboxChange}
         checked={isChecked}
       />
-      <label htmlFor={name}>{title}</label>
+      <label>{title}</label>
     </>
   );
 }
