@@ -1,11 +1,11 @@
-import { DietEnum } from '../enums/DietEnums';
+import { DietEnum } from '../types/enums/DietEnums';
 import {
   ExerciseExpEnum,
   ExerciseFreqEnum,
   FitnessGoal,
-} from '../enums/ExerciseExp';
-import { FastingFrequencyEnum } from '../enums/FastingFreqEnum';
-import { GenderEnum } from '../enums/GenderEnums';
+} from '../types/enums/ExerciseExp';
+import { FastingFrequencyEnum } from '../types/enums/FastingFreqEnum';
+import { GenderEnum } from '../types/enums/GenderEnums';
 import { InputValues } from '../types/InputTypes';
 
 export const mockInputValues: InputValues = {

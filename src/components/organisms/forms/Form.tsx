@@ -1,15 +1,14 @@
-import Button from '../buttons/Buton';
-import useCustomForm from '../../hooks/useCustomForm';
-import { useStepStore } from '../../store/StepStore';
+import Button from '../../atoms/Buton';
+import useCustomForm from './Form.hooks';
 
-interface StepOneFormProps {
+interface FormProps {
   title: string;
   gridCols: string;
   onNextStep: () => void;
   onPrevStep: () => void;
 }
 
-const CustomForm: React.FC<StepOneFormProps> = ({
+const Form: React.FC<FormProps> = ({
   gridCols,
   title,
   onNextStep,
@@ -19,20 +18,21 @@ const CustomForm: React.FC<StepOneFormProps> = ({
     renderSteps,
     handleSubmit,
     onPrevStep: handlePrevStep,
+    currentStep,
   } = useCustomForm(onNextStep, onPrevStep);
-  const currentStep = useStepStore((state) => state.step);
+
   return (
     <>
       <form className='flex flex-col '>
         <fieldset
-          className={` grid ${String(gridCols)} gap-8 text-black text-start`}
+          className={` grid ${String(
+            gridCols
+          )} gap-8 text-black text-start place-self-center`}
         >
           <legend className='w-full text-center mb-8 text-2xl font-bold'>
             {title}
           </legend>
-          {renderSteps(currentStep)?.map((element, index) => (
-            <div key={index}>{element}</div>
-          ))}
+          {renderSteps(currentStep)}
         </fieldset>
       </form>
       <div className='flex gap-4 col-span-full text-end flex-1 justify-end pb-4 mt-4'>
@@ -57,4 +57,4 @@ const CustomForm: React.FC<StepOneFormProps> = ({
   );
 };
 
-export default CustomForm;
+export default Form;
