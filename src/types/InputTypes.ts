@@ -1,11 +1,11 @@
-import { DietEnum } from '../enums/DietEnums';
+import { DietEnum } from './enums/DietEnums';
 import {
   ExerciseExpEnum,
   ExerciseFreqEnum,
   FitnessGoal,
-} from '../enums/ExerciseExp';
-import { FastingFrequencyEnum } from '../enums/FastingFreqEnum';
-import { GenderEnum } from '../enums/GenderEnums';
+} from './enums/ExerciseExp';
+import { FastingFrequencyEnum } from './enums/FastingFreqEnum';
+import { GenderEnum } from './enums/GenderEnums';
 
 export interface InputValues {
   name: string;
