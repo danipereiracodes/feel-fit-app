@@ -1,8 +1,8 @@
-import { useStepStore } from '../store/StepStore';
+import { useStepStore } from '../../store/StepStore';
 
-import Steps from './Steps';
+import Steps from './step-wizard/StepWizard';
 
-import Button from './buttons/Buton';
+import Button from '../atoms/Buton';
 
 /* const fetchData = () => {
   const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);

@@ -4,20 +4,21 @@ import {
   FieldErrors,
   UseFormRegister,
 } from 'react-hook-form';
-import ControlledInput from '../components/form-steps/form-fields/ControlledInput';
-import CustomCheckbox from '../components/form-steps/form-fields/CustomCheckbox';
-import CustomSelect from '../components/form-steps/form-fields/CustomSelect';
-import { DietEnum } from '../types/enums/DietEnums';
+import ControlledInput from '../../molecules/ControlledInput';
+
+import CustomSelect from '../../molecules/CustomSelect';
+import { DietEnum } from '../../../types/enums/DietEnums';
 import {
   ExerciseExpEnum,
   ExerciseFreqEnum,
   FitnessGoal,
-} from '../types/enums/ExerciseExp';
-import { FastingFrequencyEnum } from '../types/enums/FastingFreqEnum';
-import { useStepStore } from '../store/StepStore';
-import { InputValues } from '../types/InputTypes';
-import { UseStepsEnum } from '../types/enums/UseStepsEnums';
-import StepOneFields from '../components/steps/StepOne';
+} from '../../../types/enums/ExerciseExp';
+import { FastingFrequencyEnum } from '../../../types/enums/FastingFreqEnum';
+import { useStepStore } from '../../../store/StepStore';
+import { InputValues } from '../../../types/InputTypes';
+import { UseStepsEnum } from '../../../types/enums/UseStepsEnums';
+import StepOneFields from './StepOne';
+import CustomCheckbox from '../../molecules/CustomCheckbox';
 
 interface UseSteps {
   register: UseFormRegister<InputValues>;
