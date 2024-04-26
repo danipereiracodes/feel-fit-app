@@ -1,18 +1,16 @@
-import { useStepStore } from '../../store/StepStore';
+
+import { useMainStore } from '../../store/MainStore';
+
 
 import Steps from './step-wizard/StepWizard';
 
 import Button from '../atoms/Buton';
 
-/* const fetchData = () => {
-  const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
-  return shuffledhealthData;
-}; */
 
 const MainContent: React.FC = () => {
-  const step = useStepStore((state) => state.step);
-  const setStep = useStepStore((state) => state.addStep);
-  /* const [tips, setTips] = useState<string>('Loading...'); */
+  const step = useMainStore((state) => state.step);
+  const setStep = useMainStore((state) => state.addStep);
+
 
   const handleStepBack = () => {
     setStep(step - 1);
@@ -42,12 +40,8 @@ const MainContent: React.FC = () => {
           />
         </div>
       )}
-      {/* TODO: TIP COMPONENT <div className='fixed top-8 left-24 w-[150px] h-[150px] flex flex-wrap  bg-black text-white p-4 text-ellipsis line-clamp-3'>
-        <div className=' relative  flex items-center no-wrap '>
-          <img src={myBulb} alt='bulb'></img>{' '}
-          <span className='mt-8'>{tips}</span>
-        </div>
-      </div> */}
+
+
     </section>
   );
 };

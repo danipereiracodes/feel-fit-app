@@ -56,7 +56,15 @@ const useStepWizard = ({
       ),
     },
     {
-      component: <Summary onPrevStep={onPrevStep} onNextStep={onNextStep} />,
+
+      component: (
+        <Summary
+          title='Check your information'
+          onPrevStep={onPrevStep}
+          onNextStep={onNextStep}
+        />
+      ),
+
     },
     {
       component: <Checkout />,

@@ -16,5 +16,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: ['@xpd/tailwind-3dtransforms'],
 };

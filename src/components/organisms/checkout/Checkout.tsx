@@ -1,67 +1,64 @@
+
+import { useState, useEffect } from 'react';
+
+/* import { openAiMock } from '../../../mocks/dataResponseMock'; */
+
 import usePlan from './Checkout.hooks';
+import { healtData } from '../../../lib/data/healthTips';
+import { mockResponse } from '../../../mocks/dataResponseMock';
+import WeeklyPlan from '../weekly-plan/WeeklyPlan';
+import FetchOpenAi from '../../FetchOpenAi';
 
 const Plan = () => {
-  const { fakeData, loading, error, userName, date } = usePlan();
+  const [planData, setPlanData] = useState<string>(null);
+  const [username, setUserName] = useState('');
+  const [tips, setTips] = useState<string | null>(
+    'Some tips while we create your plan'
+  );
+  const { data, loading, error } = FetchOpenAi();
+  const { userName } = usePlan();
+
+  const shuffleTips = () => {
+    const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
+    return shuffledhealthData;
+  };
+
+  useEffect(() => {
+    let tipInterval: number;
+
+    if (data) {
+      setPlanData(data);
+      setUserName(userName);
+      setTips(null);
+    } else {
+      tipInterval = setInterval(() => {
+        setTips(shuffleTips()[0]);
+        console.log(shuffleTips()[0]);
+      }, 5000);
+    }
+
+    return () => clearInterval(tipInterval);
+  }, [data]);
+  console.log(mockResponse.data);
 
   return loading ? (
-    <div className='loader'></div>
-  ) : fakeData && error === null ? (
-    <section className='flex flex-col gap-4 z-20 text-white w-screen p-4 md:container'>
-      <div className='mx-auto p-8 flex flex-col text-center gap-2'>
-        {' '}
-        <h1 className='text-4xl text-center mb-4'>
-          Here's what we got for you {userName && userName}{' '}
-        </h1>
-        <p className='font-bold text-lg'>{date}</p>
-        <p className='text-lg text-center'>
-          Please note that our service provides a basic starting point for meal
-          plans and exercise routines. Transform your journey towards a
-          healthier lifestyle with our service! We offer a quick and motivating
-          starting point for meal plans and exercise routines. While our tool
-          provides valuable guidance, always remember to consult with a
-          healthcare professional for personalized advice. Your path to wellness
-          starts here!
-        </p>
-      </div>
-      <article className='  overflow-auto p-8 bg-black/50 backdrop-opacity-50'>
-        <h1 className='text-4xl font-bold text-center mb-24'>Exercise Plan</h1>
-        <ul className='grid grid-cols-auto gap-4 '>
-          {Object.keys(fakeData.data.exercisePlan).map((day) => (
-            <li key={day} className=''>
-              <span className='text-2xl font-bold cursive underline text-bright-secondary'>
-                {day}
-              </span>{' '}
-              {fakeData.data.exercisePlan[day]}
-            </li>
-          ))}
-        </ul>
-      </article>
-
-      <article className=' overflow-auto p-8 bg-black/50 backdrop-opacity-50'>
-        <h1 className='text-4xl font-bold text-center mb-24'>Meals</h1>
-        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          {Object.keys(fakeData.data.mealPlan).map((day) => (
-            <li key={day} className=''>
-              <span className='text-2xl font-bold cursive underline text-bright-secondary'>
-                {day}
-              </span>
-
-              <ul className='flex flex-col gap-4'>
-                {Object.keys(fakeData.data.mealPlan[day]).map((meal) => (
-                  <li key={meal}>
-                    {' '}
-                    <span className='font-bold'>{meal}</span>.{' '}
-                    {fakeData.data.mealPlan[day][meal]}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </article>
-    </section>
+    <div className='z-30 text-center text-white flex flex-col gap-12 justify-center items-center'>
+      <h1 className='font-bold text-2xl'>{tips}</h1>
+      <div className='loader'></div>
+    </div>
+  ) : error ? (
+    <h1 className='z-20'>Error: {error}</h1>
+  ) : planData ? (
+    <WeeklyPlan
+      userName={username}
+      timeStamp={new Date().toLocaleDateString()}
+      data={planData}
+    />
   ) : (
-    <h1>{error}</h1>
+    <div className='text-white text-2xl uppercase z-20'>
+      <h1>No data available, please try again in a few seconds</h1>
+    </div>
+
   );
 };
 

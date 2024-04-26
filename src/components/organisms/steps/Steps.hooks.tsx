@@ -14,7 +14,9 @@ import {
   FitnessGoal,
 } from '../../../types/enums/ExerciseExp';
 import { FastingFrequencyEnum } from '../../../types/enums/FastingFreqEnum';
-import { useStepStore } from '../../../store/StepStore';
+
+import { useMainStore } from '../../../store/MainStore';
+
 import { InputValues } from '../../../types/InputTypes';
 import { UseStepsEnum } from '../../../types/enums/UseStepsEnums';
 import StepOneFields from './StepOne';
@@ -27,7 +29,9 @@ interface UseSteps {
 }
 
 const useSteps = ({ register, errors, control }: UseSteps) => {
-  const isFasting = useStepStore((state) => state.data.fasting);
+
+  const isFasting = useMainStore((state) => state.data.fasting);
+
 
   const handleTextInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
