@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useStepStore } from '../store/StepStore';
+import { useState } from 'react';
+import { useMainStore } from '../store/MainStore';
 
 const useSummary = () => {
   const [loading, setLoading] = useState(false);
@@ -19,17 +19,9 @@ const useSummary = () => {
       exerciseFreq,
     } = mockInputValues; */
 
-  const data = useStepStore((state) => state.data);
+  const data = useMainStore((state) => state.data);
 
-  useEffect(() => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
-  return { data, loading };
+  return { data, loading, setLoading };
 };
 
 export default useSummary;

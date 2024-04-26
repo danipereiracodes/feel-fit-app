@@ -1,6 +1,6 @@
 import { UseFormRegister } from 'react-hook-form';
 import { InputValues } from '../../types/InputTypes';
-import { useStepStore } from '../../store/StepStore';
+import { useMainStore } from '../../store/MainStore';
 import { useEffect } from 'react';
 
 interface CustomCheckbox {
@@ -19,8 +19,8 @@ function CustomCheckbox({
   type,
   title,
 }: CustomCheckbox) {
-  const isChecked = useStepStore((state) => state.data.fasting);
-  const updateFasting = useStepStore((state) => state.updateFasting);
+  const isChecked = useMainStore((state) => state.data.fasting);
+  const updateFasting = useMainStore((state) => state.updateFasting);
 
   useEffect(() => {
     register(name as keyof InputValues, { required });

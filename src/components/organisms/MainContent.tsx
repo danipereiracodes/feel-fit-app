@@ -1,4 +1,4 @@
-import { useStepStore } from '../../store/StepStore';
+import { useMainStore } from '../../store/MainStore';
 
 import Steps from './step-wizard/StepWizard';
 
@@ -10,8 +10,8 @@ import Button from '../atoms/Buton';
 }; */
 
 const MainContent: React.FC = () => {
-  const step = useStepStore((state) => state.step);
-  const setStep = useStepStore((state) => state.addStep);
+  const step = useMainStore((state) => state.step);
+  const setStep = useMainStore((state) => state.addStep);
   /* const [tips, setTips] = useState<string>('Loading...'); */
 
   const handleStepBack = () => {

@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { OpenAIResponse, mockResponse } from '../../../mocks/dataResponseMock';
-import { useStepStore } from '../../../store/StepStore';
+import { useState } from 'react';
+
+import { useMainStore } from '../../../store/MainStore';
 
 const usePlan = () => {
-  const [fakeData, setFakeData] = useState<OpenAIResponse | null>(null);
+  /*   const [fakeData, setFakeData] = useState<OpenAIResponse | null>(null); */
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const userName = useStepStore((state) => state.data.name);
-
+  const userName = useMainStore((state) => state.data.name);
+  /* 
   useEffect(() => {
     function fetchMockData() {
       setLoading(true);
@@ -33,9 +33,9 @@ const usePlan = () => {
       });
   }, []);
 
-  const date = new Date().toLocaleString();
+  const date = new Date().toLocaleString(); */
 
-  return { fakeData, loading, error, userName, date };
+  return { loading, setLoading, setError, error, userName };
 };
 
 export default usePlan;

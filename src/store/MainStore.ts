@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { InputValues } from '../types/InputTypes';
 
-interface IStep {
+interface IStore {
   step: number;
   addStep: (newStep: number) => void;
   data: InputValues;
@@ -26,7 +26,7 @@ const initialState = {
   goal: [],
 };
 
-export const useStepStore = create<IStep>((set) => ({
+export const useMainStore = create<IStore>((set) => ({
   step: 0,
   addStep: (newStep: number) => set({ step: newStep }),
   data: initialState,
