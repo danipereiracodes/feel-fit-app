@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 
 /* import { openAiMock } from '../../../mocks/dataResponseMock'; */
@@ -33,13 +32,11 @@ const Plan = () => {
     } else {
       tipInterval = setInterval(() => {
         setTips(shuffleTips()[0]);
-        console.log(shuffleTips()[0]);
       }, 5000);
     }
 
     return () => clearInterval(tipInterval);
   }, [data]);
-  console.log(mockResponse.data);
 
   return loading ? (
     <div className='z-30 text-center text-white flex flex-col gap-12 justify-center items-center'>
@@ -58,7 +55,6 @@ const Plan = () => {
     <div className='text-white text-2xl uppercase z-20'>
       <h1>No data available, please try again in a few seconds</h1>
     </div>
-
   );
 };
 
