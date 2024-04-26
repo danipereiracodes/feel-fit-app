@@ -1,8 +1,10 @@
+
 export type ExercisePlan = {
   [key: string]: string;
 };
 
 export interface MealPlan {
+
   [meal: string]: string;
   Breakfast: string;
   MorningSnack: string;
@@ -101,6 +103,7 @@ export const mockResponse: OpenAIResponse = {
     ],
   },
 };
+
 
 export const openAiMock = {
   exercisePlan: {
@@ -201,3 +204,4 @@ export const openAiMock = {
     },
   },
 };
+

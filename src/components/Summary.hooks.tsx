@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useMainStore } from '../store/MainStore';
 
@@ -7,6 +8,7 @@ const useSummary = () => {
   const data = useMainStore((state) => state.data);
 
   return { data, loading, setLoading };
+
 };
 
 export default useSummary;

@@ -1,6 +1,7 @@
 const Header: React.FC = () => {
   return (
     <header className='flex items-center justify-center bg-secondary-dark text-primary-gray font-extrabold text-2xl'>
+
       <a href='/'>
         <div className='flex gap-2 items-center'>
           <img
@@ -10,6 +11,7 @@ const Header: React.FC = () => {
           />
         </div>
       </a>
+
     </header>
   );
 };

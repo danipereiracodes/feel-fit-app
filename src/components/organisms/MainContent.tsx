@@ -1,12 +1,15 @@
 import { useMainStore } from '../../store/MainStore';
 
+
 import Steps from './step-wizard/StepWizard';
 
 import Button from '../atoms/Buton';
 
+
 const MainContent: React.FC = () => {
   const step = useMainStore((state) => state.step);
   const setStep = useMainStore((state) => state.addStep);
+
 
   const handleStepBack = () => {
     setStep(step - 1);
@@ -36,6 +39,7 @@ const MainContent: React.FC = () => {
           />
         </div>
       )}
+
     </section>
   );
 };

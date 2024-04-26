@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* LOADER STYLES AND ANIMATION */
+
 .loader {
   --d: 22px;
   width: 4px;
@@ -23,6 +25,7 @@
     transform: rotate(1turn);
   }
 }
+
 
 /* FLIPCARD ANIMATIONS */
 

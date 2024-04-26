@@ -36,12 +36,14 @@ const StepWizard: React.FC<StepsProps> = ({
         <HomeBanner />
       ) : (
         <>
+
           {stepContent && currentStep !== 5 && (
             <FormContainer>
               <div className='flex flex-col p-8 h-full'>{stepContent}</div>
             </FormContainer>
           )}
           {currentStep === 5 && stepContent}
+
         </>
       )}
     </>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+
 import { useMainStore } from '../../../store/MainStore';
+
 import { InputValues } from '../../../types/InputTypes';
 import useSteps from '../steps/Steps.hooks';
 
@@ -14,9 +16,11 @@ const useCustomForm = (onNextStep: () => void, onPrevStep: () => void) => {
   } = useForm<InputValues>();
   const [formData, setFormData] = useState<InputValues | null>(null);
   const { renderSteps } = useSteps({ register, control, errors });
+
   const inputData = useMainStore((state) => state.data);
   const updateData = useMainStore((state) => state.updateData);
   const currentStep = useMainStore((state) => state.step);
+
 
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
