@@ -6,10 +6,11 @@ import Button from './atoms/Buton';
 interface SummaryProps {
   onPrevStep: () => void;
   onNextStep: () => void;
+  title: string;
 }
 
-const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep }) => {
-  const { data, loading } = useSummary();
+const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
+  const { data } = useSummary();
   const {
     age,
     gender,
@@ -25,123 +26,77 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep }) => {
     goal,
   } = data;
 
-  return loading ? (
-    <div className='loader'></div>
-  ) : (
-    <section className='transition-opacity ease-in-out delay-150 z-20 bg-white/50 p-8 w-[350px] md:w-[500px] lg:w-[750px] text-black text-lg'>
-      <table className='  text-md'>
-        <tbody className=' grid grid-cols-2 md:grid-cols-4 gap-2'>
-          {/* <tr className='flex flex-col '>
-            <td className='px-4 bg-gray-700 text-white font-bold text-black'>
-              name
-            </td>
-            <td className='px-4 py-2 '>{name}</td>
-          </tr>
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Lastname
-            </td>
-            <td className='px-4 py-2  h-full'>{lastname}</td>
-          </tr> */}
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Age
-            </td>
-            <td className='px-4 py-2  h-full'>{age}</td>
-          </tr>
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Gender
-            </td>
-            <td className='px-4 py-2  h-full'>{gender}</td>
-          </tr>
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Height
-            </td>
-            <td className='px-4 py-2  h-full'>{height}</td>
-          </tr>
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Weight
-            </td>
-            <td className='px-4 py-2  h-full'>{weight}</td>
-          </tr>
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black '>
-              Diet
-            </td>
-            <td className='px-4 py-2  h-full'>{diet}</td>
-          </tr>
-          <tr className='flex flex-col  '>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Fasting
-            </td>
-            <td className='px-4 py-2  h-full'>{fasting ? 'Yes' : 'No'}</td>
-          </tr>
-          {fastingFreq.length ? (
-            <tr className='flex flex-col  '>
-              <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-                Fasting freq
-              </td>
-              <td className='px-4 py-2  h-full'>{fastingFreq}</td>
-            </tr>
-          ) : null}
-          {allergies !== '' ? (
-            <tr className='flex flex-col  '>
-              <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-                Allergies
-              </td>
-              <td className='px-4 py-2  h-full truncate'>{allergies}</td>
-            </tr>
-          ) : null}
-          <tr className='flex flex-col'>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Exercise Exp
-            </td>
-            <td className='px-4 py-2  h-full truncate'>{exerciseExp}</td>
-          </tr>
-          <tr className='flex flex-col'>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Exercise Freq
-            </td>
-            <td className='px-4 py-2  h-full truncate'>{exerciseFreq}</td>
-          </tr>
-          {injuries !== '' ? (
-            <tr className='flex flex-col'>
-              <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-                Injuries
-              </td>
-              <td className='px-4 py-2  h-full truncate lip'>{injuries}</td>
-            </tr>
-          ) : null}
-          <tr className='flex flex-col'>
-            <td className=' px-4 bg-gray-700 text-white font-bold text-black'>
-              Goal
-            </td>
-            <td className='px-4 py-2  h-full truncate'>{goal}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div className='gap-4 col-span-full  text-end mt-8  bottom-16 right-4'>
+  return (
+    <>
+      {' '}
+      <h1 className='w-full text-center mb-8 text-2xl font-bold'>
+        {title && title}
+      </h1>
+      <ul className='grid grid-cols-3 overflow-auto'>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Age:</strong> {age}
+        </li>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Gender:</strong> {gender}
+        </li>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Height:</strong> {height}
+        </li>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Weight:</strong> {weight}
+        </li>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Diet:</strong> {diet}
+        </li>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Fasting:</strong>{' '}
+          {fasting ? 'Yes' : 'No'}
+        </li>
+        {fastingFreq.length ? (
+          <li className='flex flex-col'>
+            <strong className=' font-bold text-black'>Fasting freq:</strong>{' '}
+            {fastingFreq}
+          </li>
+        ) : null}
+        {allergies !== '' ? (
+          <li className='flex flex-col'>
+            <strong className=' font-bold text-black'>Allergies:</strong>{' '}
+            {allergies}
+          </li>
+        ) : null}
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Exercise Exp:</strong>{' '}
+          {exerciseExp}
+        </li>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Exercise Freq:</strong>{' '}
+          {exerciseFreq}
+        </li>
+        {injuries !== '' ? (
+          <li className='flex flex-col'>
+            <strong className=' font-bold text-black'>Injuries:</strong>{' '}
+            {injuries}
+          </li>
+        ) : null}
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Goal:</strong> {goal}
+        </li>
+      </ul>
+      <div className='gap-4 col-span-full text-end mt-8 bottom-16 right-4'>
         <Button
           onClick={onPrevStep}
           type='button'
-          styles={
-            'w-24 z-20 rounded-xl bg-gray-700  py-2 text-white font-normal text-lg col-span-2place-self-end hover:scale-110 transition duration-300 ease-in-out'
-          }
+          styles='w-24 z-20 rounded-xl bg-gray-700 py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
           text='Back'
         />
         <Button
           onClick={onNextStep}
           type='button'
-          styles={
-            'w-24 rounded-xl ml-4 z-20 bg-bright-secondary  py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
-          }
-          text='Finish'
+          styles='w-24 rounded-xl ml-4 z-20 bg-bright-secondary py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
+          text='Proceed'
         />
       </div>
-    </section>
+    </>
   );
 };
 export default Summary;

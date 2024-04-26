@@ -29,19 +29,19 @@ const StepWizard: React.FC<StepsProps> = ({
     onNextStep,
     onPrevStep,
   });
+
   return (
     <>
       {currentStep === 0 ? (
         <HomeBanner />
       ) : (
         <>
-          {stepContent && currentStep !== 4 && currentStep !== 5 && (
-            <FormContainer>{stepContent}</FormContainer>
+          {stepContent && currentStep !== 5 && (
+            <FormContainer>
+              <div className='flex flex-col p-8 h-full'>{stepContent}</div>
+            </FormContainer>
           )}
-
-          {stepContent &&
-            (currentStep === 4 || currentStep === 5) &&
-            stepContent}
+          {currentStep === 5 && stepContent}
         </>
       )}
     </>

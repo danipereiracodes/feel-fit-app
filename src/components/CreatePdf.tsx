@@ -1,5 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+} from '@react-pdf/renderer';
+
+import { ExercisePlan, MealPlan } from '../mocks/dataResponseMock';
 
 const styles = StyleSheet.create({
   page: {
@@ -25,12 +34,52 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 5,
   },
+  header: {
+    fontSize: 19,
+    fontWeight: 'bold',
+
+    backgroundColor: 'rgb(55 65 81)',
+    color: 'white',
+    padding: '24px',
+  },
+
+  footer: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    textAlign: 'center',
+    backgroundColor: 'rgb(55 65 81)',
+    text: 'white',
+    padding: '24px',
+  },
 });
 
-const WeeklyPlanPDF = ({ data }) => {
+interface WeeklyPlanPDFProps {
+  data: {
+    exercisePlan: ExercisePlan;
+    mealPlan: { [day: string]: MealPlan };
+  };
+  userName: string;
+}
+
+const WeeklyPlanPDF: React.FC<WeeklyPlanPDFProps> = ({ data, userName }) => {
+  const timeStamp = new Date().toLocaleDateString();
   return (
     <Document>
       <Page size='A4' style={styles.page}>
+        <View style={styles.header}>
+          <Image
+            src='/images/logo/fee-fit-logo.png'
+            style={{ width: '150px' }}
+          />
+          <Text>
+            {`${userName}
+            's week meal and exercise plan on ${timeStamp}`}
+          </Text>
+        </View>
         {Object.keys(data.exercisePlan).map((day, index) => (
           <View key={index} style={styles.section}>
             <Text style={styles.title}>{day}</Text>
@@ -43,6 +92,7 @@ const WeeklyPlanPDF = ({ data }) => {
             ))}
           </View>
         ))}
+        <Text>App developed by danipereira.dev</Text>
       </Page>
     </Document>
   );

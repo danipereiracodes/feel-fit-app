@@ -1,8 +1,8 @@
-type ExercisePlan = {
+export type ExercisePlan = {
   [key: string]: string;
 };
 
-interface MealPlan {
+export interface MealPlan {
   [meal: string]: string;
   Breakfast: string;
   MorningSnack: string;

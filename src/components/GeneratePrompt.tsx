@@ -30,11 +30,13 @@ Exercise Frequency: ${exerciseFreq}
 Exercise Experience: ${exerciseExp}
 Fitness Goal: ${goal}
 
-Please provide a detailed plan for each day of the week, including both meals and exercises.
+Please provide a detailed plan for each day of the week, including both meals and exercises. It's important that you give the users information about how to do the exercises, do they need equipment? also make sure to add the recipe of the meal you don't have to breakdown every step but remember the user doesn't know how to prepare those meals.
+If the user's checked the intermitent fasting make sure to follow that rule and write "skip" in the time range of the fasting. 
+
 
 The response should follow this example's structure.
- Your response should be in JSON format. Here is the expected JSON format:
- {
+ Your response should be in JSON format. Here is the expected JSON format, also make sure you don't start the response data with this three backticks an the word json , just give me the actual JSON data to render it right away:
+ 
     "exercisePlan": {
       "Monday": "30 minutes of bodyweight exercises (push-ups, squats, lunges, etc.)",
       "Tuesday": "20 minutes of yoga",
