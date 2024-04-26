@@ -30,18 +30,22 @@ const StepWizard: React.FC<StepsProps> = ({
     onPrevStep,
   });
 
+
+
   return (
     <>
       {currentStep === 0 ? (
         <HomeBanner />
       ) : (
         <>
+
           {stepContent && currentStep !== 5 && (
             <FormContainer>
               <div className='flex flex-col p-8 h-full'>{stepContent}</div>
             </FormContainer>
           )}
           {currentStep === 5 && stepContent}
+
         </>
       )}
     </>

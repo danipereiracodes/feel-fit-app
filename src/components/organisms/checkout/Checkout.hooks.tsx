@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 
 import { useMainStore } from '../../../store/MainStore';
@@ -7,7 +8,8 @@ const usePlan = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const userName = useMainStore((state) => state.data.name);
-  /* 
+  /*
+
   useEffect(() => {
     function fetchMockData() {
       setLoading(true);
@@ -33,9 +35,11 @@ const usePlan = () => {
       });
   }, []);
 
+
   const date = new Date().toLocaleString(); */
 
   return { loading, setLoading, setError, error, userName };
+
 };
 
 export default usePlan;

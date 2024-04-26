@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 
 /* import { openAiMock } from '../../../mocks/dataResponseMock'; */
@@ -57,6 +58,7 @@ const Plan = () => {
     <div className='text-white text-2xl uppercase z-20'>
       <h1>No data available, please try again in a few seconds</h1>
     </div>
+
   );
 };
 
