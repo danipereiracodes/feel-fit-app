@@ -9,7 +9,6 @@ interface DayIconProps {
 
 const DayIcon: React.FC<DayIconProps> = ({ day }) => {
   let iconComponent;
-  console.log(day);
 
   switch (day) {
     case 'Sunday':

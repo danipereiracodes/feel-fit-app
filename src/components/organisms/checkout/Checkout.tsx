@@ -1,45 +1,8 @@
-
-import { useState, useEffect } from 'react';
-
-/* import { openAiMock } from '../../../mocks/dataResponseMock'; */
-
-import usePlan from './Checkout.hooks';
-import { healtData } from '../../../lib/data/healthTips';
-import { mockResponse } from '../../../mocks/dataResponseMock';
 import WeeklyPlan from '../weekly-plan/WeeklyPlan';
-import FetchOpenAi from '../../FetchOpenAi';
+import useCheckout from './Checkout.hooks';
 
 const Plan = () => {
-  const [planData, setPlanData] = useState<string>(null);
-  const [username, setUserName] = useState('');
-  const [tips, setTips] = useState<string | null>(
-    'Some tips while we create your plan'
-  );
-  const { data, loading, error } = FetchOpenAi();
-  const { userName } = usePlan();
-
-  const shuffleTips = () => {
-    const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
-    return shuffledhealthData;
-  };
-
-  useEffect(() => {
-    let tipInterval: number;
-
-    if (data) {
-      setPlanData(data);
-      setUserName(userName);
-      setTips(null);
-    } else {
-      tipInterval = setInterval(() => {
-        setTips(shuffleTips()[0]);
-        console.log(shuffleTips()[0]);
-      }, 5000);
-    }
-
-    return () => clearInterval(tipInterval);
-  }, [data]);
-  console.log(mockResponse.data);
+  const { loading, tips, error, planData, username } = useCheckout();
 
   return loading ? (
     <div className='z-30 text-center text-white flex flex-col gap-12 justify-center items-center'>
@@ -47,7 +10,7 @@ const Plan = () => {
       <div className='loader'></div>
     </div>
   ) : error ? (
-    <h1 className='z-20'>Error: {error}</h1>
+    <h1 className='z-20 text-white text-2xl text-center'>Error: {error}</h1>
   ) : planData ? (
     <WeeklyPlan
       userName={username}
@@ -58,7 +21,6 @@ const Plan = () => {
     <div className='text-white text-2xl uppercase z-20'>
       <h1>No data available, please try again in a few seconds</h1>
     </div>
-
   );
 };
 

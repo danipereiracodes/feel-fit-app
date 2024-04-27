@@ -34,8 +34,8 @@ Please provide a detailed plan for each day of the week, including both meals an
 If the user's checked the intermitent fasting make sure to follow that rule and write "skip" in the time range of the fasting. 
 
 
-The response should follow this example's structure.
- Your response should be in JSON format. Here is the expected JSON format, also make sure you don't start the response data with this three backticks an the word json , just give me the actual JSON data to render it right away:
+The response should follow this example's structure. Don't use different structure and stick to the same properties , don't add more. 
+ Your response should be in JSON format. Here is the expected JSON format, also make sure you don't start the response data with this three backticks an the word json , just give me the actual JSON data to render it right away. It's crucial that you don't change the structure:
  
     "exercisePlan": {
       "Monday": "30 minutes of bodyweight exercises (push-ups, squats, lunges, etc.)",

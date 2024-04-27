@@ -35,7 +35,7 @@ const Form: React.FC<FormProps> = ({
           {renderSteps(currentStep)}
         </fieldset>
       </form>
-      <div className='flex gap-4 col-span-full text-end flex-1 justify-end pb-4 mt-4'>
+      <div className='absolute bottom-4 right-8 gap-4 col-span-full pb-4 mt-4'>
         <Button
           onClick={handlePrevStep}
           type='button'

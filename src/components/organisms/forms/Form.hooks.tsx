@@ -21,7 +21,6 @@ const useCustomForm = (onNextStep: () => void, onPrevStep: () => void) => {
   const updateData = useMainStore((state) => state.updateData);
   const currentStep = useMainStore((state) => state.step);
 
-
   const onSubmit: SubmitHandler<InputValues> = (data) => {
     updateData(data);
     onNextStep();
@@ -37,7 +36,6 @@ const useCustomForm = (onNextStep: () => void, onPrevStep: () => void) => {
 
   useEffect(() => {
     localStorage.setItem('user-data', JSON.stringify(inputData));
-    console.log('<------ inputdata ', inputData);
   }, [inputData]);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import Checkout from '../checkout/Checkout';
-import Summary from '../../Summary';
+import Summary from '../../summary/Summary';
 import Form from '../forms/Form';
 
 /**
@@ -56,7 +56,6 @@ const useStepWizard = ({
       ),
     },
     {
-
       component: (
         <Summary
           title='Check your information'
@@ -64,7 +63,6 @@ const useStepWizard = ({
           onNextStep={onNextStep}
         />
       ),
-
     },
     {
       component: <Checkout />,
