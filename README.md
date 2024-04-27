@@ -54,7 +54,7 @@ npm run dev
 - GPT-3.5 Turbo Model (OpenAI)
 - Tailwind CSS
 
-## Dependencies
+## Dependencies
 
 - @react-pdf/renderer: Generate PDF documents in React.
 - @types/uuid: TypeScript definitions for UUID.
