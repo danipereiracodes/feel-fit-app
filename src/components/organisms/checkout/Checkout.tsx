@@ -1,43 +1,8 @@
-import { useState, useEffect } from 'react';
-
-import useCheckout from './Checkout.hooks';
-import { healtData } from '../../../lib/data/healthTips';
-
 import WeeklyPlan from '../weekly-plan/WeeklyPlan';
-import FetchOpenAi from '../../FetchOpenAi';
+import useCheckout from './Checkout.hooks';
 
 const Plan = () => {
-  const [planData, setPlanData] = useState<{
-    exercisePlan: { [day: string]: string };
-    mealPlan: { [day: string]: { [meal: string]: string } };
-  } | null>(null);
-  const [username, setUserName] = useState('');
-  const [tips, setTips] = useState<string | null>(
-    'Some tips while we create your plan'
-  );
-  const { data, loading, error } = FetchOpenAi();
-  const { userName } = useCheckout();
-
-  const shuffleTips = () => {
-    const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
-    return shuffledhealthData;
-  };
-
-  useEffect(() => {
-    let tipInterval: number;
-
-    if (data) {
-      setPlanData(data);
-      setUserName(userName);
-      setTips(null);
-    } else {
-      tipInterval = setInterval(() => {
-        setTips(shuffleTips()[0]);
-      }, 5000);
-    }
-
-    return () => clearInterval(tipInterval);
-  }, [data]);
+  const { loading, tips, error, planData, username } = useCheckout();
 
   return loading ? (
     <div className='z-30 text-center text-white flex flex-col gap-12 justify-center items-center'>

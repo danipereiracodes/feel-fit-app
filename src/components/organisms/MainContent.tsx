@@ -24,8 +24,13 @@ const MainContent: React.FC = () => {
 
   return (
     <section
-      style={{ backgroundImage: `url("/images/background/${backgroundImg}")` }}
-      className={`relative flex flex-col gap-8 p-12 items-center justify-center  bg-center bg-cover bg-no-repeat`}
+      style={{
+        backgroundImage: `url("/images/background/${backgroundImg}")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+      }}
+      className={`relative flex flex-col gap-8 p-12 items-center justify-center `}
     >
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
 

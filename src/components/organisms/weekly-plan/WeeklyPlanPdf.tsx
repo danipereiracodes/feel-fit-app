@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Document,
   Page,
@@ -8,7 +7,7 @@ import {
   Image,
 } from '@react-pdf/renderer';
 
-import { ExercisePlan, MealPlan } from '../mocks/dataResponseMock';
+import { ExercisePlan, MealPlan } from '../../../mocks/dataResponseMock';
 
 const styles = StyleSheet.create({
   page: {

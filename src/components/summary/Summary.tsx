@@ -1,7 +1,7 @@
 /* import { mockInputValues } from '../mocks/userDataMock'; */
 
 import useSummary from './Summary.hooks';
-import Button from './atoms/Buton';
+import Button from '../atoms/Buton';
 
 interface SummaryProps {
   onPrevStep: () => void;
@@ -27,7 +27,6 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
     exerciseFreq,
     goal,
   } = data;
-
 
   return (
     <>
@@ -90,19 +89,16 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
           onClick={onPrevStep}
           type='button'
           styles='w-24 z-20 rounded-xl bg-gray-700 py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
-
           text='Back'
         />
         <Button
           onClick={onNextStep}
           type='button'
-
           styles='w-24 rounded-xl ml-4 z-20 bg-bright-secondary py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
           text='Proceed'
         />
       </div>
     </>
-
   );
 };
 export default Summary;

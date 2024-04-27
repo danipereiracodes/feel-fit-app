@@ -1,43 +1,40 @@
-import { useState } from 'react';
-
-import { useMainStore } from '../../../store/MainStore';
+import { useState, useEffect } from 'react';
+import { healtData } from '../../../lib/data/healthTips';
+import useCheckoutFetch from './Checkout.fetch.hooks';
 
 const useCheckout = () => {
-  /*   const [fakeData, setFakeData] = useState<OpenAIResponse | null>(null); */
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const userName = useMainStore((state) => state.data.name);
-  /*
+  const [planData, setPlanData] = useState<{
+    exercisePlan: { [day: string]: string };
+    mealPlan: { [day: string]: { [meal: string]: string } };
+  } | null>(null);
+  const [username, setUserName] = useState('');
+  const [tips, setTips] = useState<string | null>(
+    'Some tips while we create your plan'
+  );
+  const { data, loading, error } = useCheckoutFetch();
+
+  const shuffleTips = () => {
+    const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
+    return shuffledhealthData;
+  };
 
   useEffect(() => {
-    function fetchMockData() {
-      setLoading(true);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      return new Promise<OpenAIResponse | null>((resolve, _reject) => {
-        setTimeout(() => {
-          resolve(mockResponse);
-          setLoading(false);
-        }, 2000);
-      });
+    let tipInterval: number;
+
+    if (data) {
+      setPlanData(data);
+      setUserName(username);
+      setTips(null);
+    } else {
+      tipInterval = setInterval(() => {
+        setTips(shuffleTips()[0]);
+      }, 5000);
     }
 
-    fetchMockData()
-      .then((data: OpenAIResponse | null) => {
-       
-        setFakeData(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setError(
-          'There was an error trying to get the data , please try again'
-        );
-      });
-  }, []);
+    return () => clearInterval(tipInterval);
+  }, [data]);
 
-
-  const date = new Date().toLocaleString(); */
-
-  return { loading, setLoading, setError, error, userName };
+  return { loading, planData, tips, error, username };
 };
 
 export default useCheckout;

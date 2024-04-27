@@ -17,7 +17,7 @@ export interface InputValues {
   weight: number | null;
   gender: GenderEnum[];
   fasting: boolean;
-  fastingFreq: FastingFrequencyEnum[];
+  fastingFreq: FastingFrequencyEnum[] | '';
   injuries: string | null;
   exerciseFreq: ExerciseFreqEnum[];
   exerciseExp: ExerciseExpEnum[];

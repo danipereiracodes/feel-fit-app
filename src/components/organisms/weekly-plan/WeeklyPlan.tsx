@@ -3,7 +3,7 @@ import { IoMdDownload } from 'react-icons/io';
 
 import DayIcon from '../DayIcon';
 import { useState } from 'react';
-import WeeklyPlanPDF from '../../WeeklyPlanPdf';
+import WeeklyPlanPDF from './WeeklyPlanPdf';
 import { PDFViewer } from '@react-pdf/renderer';
 
 interface WeeklyPlanProps {

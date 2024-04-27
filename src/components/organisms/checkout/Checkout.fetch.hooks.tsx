@@ -1,35 +1,13 @@
 import { useEffect, useState } from 'react';
-import { generatePrompt } from './GeneratePrompt';
-import { useMainStore } from '../store/MainStore';
-
-/* export interface ChatResponse {
-  id: string;
-  object: string;
-  created: number;
-  model: string;
-  choices: {
-    index: number;
-    message: {
-      role: string;
-      content: string;
-    };
-    logprobs: string;
-    finish_reason: string;
-  }[];
-  usage: {
-    prompt_tokens: number;
-    completion_tokens: number;
-    total_tokens: number;
-  };
-  system_fingerprint: string;
-} */
+import { generatePrompt } from '../../../utils/GeneratePrompt';
+import { useMainStore } from '../../../store/MainStore';
 
 export interface PlanData {
   exercisePlan: string;
   mealPlan: string;
 }
 
-const FetchOpenAi = () => {
+const useCheckoutFetch = () => {
   const [data, setData] = useState<{
     exercisePlan: { [day: string]: string };
     mealPlan: { [day: string]: { [meal: string]: string } };
@@ -96,4 +74,4 @@ const FetchOpenAi = () => {
   return { data, loading, error, showTips };
 };
 
-export default FetchOpenAi;
+export default useCheckoutFetch;
