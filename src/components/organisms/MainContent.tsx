@@ -1,16 +1,14 @@
-
 import { useMainStore } from '../../store/MainStore';
-
 
 import Steps from './step-wizard/StepWizard';
 
 import Button from '../atoms/Buton';
-
+import { useEffect, useState } from 'react';
 
 const MainContent: React.FC = () => {
+  const [backgroundImg, setBackgroundImg] = useState('background0.jpg');
   const step = useMainStore((state) => state.step);
   const setStep = useMainStore((state) => state.addStep);
-
 
   const handleStepBack = () => {
     setStep(step - 1);
@@ -20,8 +18,15 @@ const MainContent: React.FC = () => {
     setStep(step + 1);
   };
 
+  useEffect(() => {
+    setBackgroundImg(`background${step}.jpg`);
+  }, [step]);
+
   return (
-    <section className='relative flex flex-col gap-8 p-12 items-center justify-center bg-[url("/images/background/fitness_background.avif")] bg-center bg-cover bg-no-repeat'>
+    <section
+      style={{ backgroundImage: `url("/images/background/${backgroundImg}")` }}
+      className={`relative flex flex-col gap-8 p-12 items-center justify-center  bg-center bg-cover bg-no-repeat`}
+    >
       <div className='absolute w-full h-full inset-0 bg-banner-overlay'></div>
 
       <Steps
@@ -40,8 +45,6 @@ const MainContent: React.FC = () => {
           />
         </div>
       )}
-
-
     </section>
   );
 };

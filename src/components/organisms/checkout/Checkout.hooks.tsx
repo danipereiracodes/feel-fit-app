@@ -1,9 +1,8 @@
-
 import { useState } from 'react';
 
 import { useMainStore } from '../../../store/MainStore';
 
-const usePlan = () => {
+const useCheckout = () => {
   /*   const [fakeData, setFakeData] = useState<OpenAIResponse | null>(null); */
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +23,7 @@ const usePlan = () => {
 
     fetchMockData()
       .then((data: OpenAIResponse | null) => {
-        console.log('Fetched data:', data);
+       
         setFakeData(data);
       })
       .catch((error) => {
@@ -39,7 +38,6 @@ const usePlan = () => {
   const date = new Date().toLocaleString(); */
 
   return { loading, setLoading, setError, error, userName };
-
 };
 
-export default usePlan;
+export default useCheckout;

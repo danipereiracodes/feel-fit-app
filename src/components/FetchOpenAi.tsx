@@ -30,7 +30,10 @@ export interface PlanData {
 }
 
 const FetchOpenAi = () => {
-  const [data, setData] = useState<string>('');
+  const [data, setData] = useState<{
+    exercisePlan: { [day: string]: string };
+    mealPlan: { [day: string]: { [meal: string]: string } };
+  } | null>(null); // Updated type
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showTips, setShowTips] = useState(false);
@@ -39,7 +42,7 @@ const FetchOpenAi = () => {
 
   async function fetchChatCompletions() {
     const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
-    const url = import.meta.env.VITE_OPENAI_URL;
+    const url = 'https://api.openai.com/v1/chat/completions';
 
     const requestBody = {
       model: 'gpt-3.5-turbo',

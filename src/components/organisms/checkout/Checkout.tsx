@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
 
-/* import { openAiMock } from '../../../mocks/dataResponseMock'; */
-
-import usePlan from './Checkout.hooks';
+import useCheckout from './Checkout.hooks';
 import { healtData } from '../../../lib/data/healthTips';
-import { mockResponse } from '../../../mocks/dataResponseMock';
+
 import WeeklyPlan from '../weekly-plan/WeeklyPlan';
 import FetchOpenAi from '../../FetchOpenAi';
 
 const Plan = () => {
-  const [planData, setPlanData] = useState<string>(null);
+  const [planData, setPlanData] = useState<{
+    exercisePlan: { [day: string]: string };
+    mealPlan: { [day: string]: { [meal: string]: string } };
+  } | null>(null);
   const [username, setUserName] = useState('');
   const [tips, setTips] = useState<string | null>(
     'Some tips while we create your plan'
   );
   const { data, loading, error } = FetchOpenAi();
-  const { userName } = usePlan();
+  const { userName } = useCheckout();
 
   const shuffleTips = () => {
     const shuffledhealthData = healtData.sort(() => Math.random() - 0.5);
@@ -44,7 +45,7 @@ const Plan = () => {
       <div className='loader'></div>
     </div>
   ) : error ? (
-    <h1 className='z-20'>Error: {error}</h1>
+    <h1 className='z-20 text-white text-2xl text-center'>Error: {error}</h1>
   ) : planData ? (
     <WeeklyPlan
       userName={username}
