@@ -10,7 +10,7 @@ interface ControlledInputProps {
   type: string;
   label: string;
   onBlurHandler: (e: React.FocusEvent<HTMLInputElement>) => void;
-  spanText: string | undefined;
+  spanText?: string;
   placeHolder: string;
   error?: FieldError;
 }
@@ -25,7 +25,7 @@ const ControlledInput = ({
   placeHolder,
   required,
 }: ControlledInputProps) => {
-  const textDotsandComasPattern = /^[a-zA-Z,.\\s]*$/;
+  const textDotsandComasPattern = /^[a-zA-Z,.\s]*$/;
 
   const validateRequired = required ? `required` : required;
 

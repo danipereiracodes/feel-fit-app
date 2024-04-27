@@ -21,10 +21,8 @@ function CustomCheckbox({
   type,
   title,
 }: CustomCheckbox) {
-
   const isChecked = useMainStore((state) => state.data.fasting);
   const updateFasting = useMainStore((state) => state.updateFasting);
-
 
   useEffect(() => {
     register(name as keyof InputValues, { required });
@@ -36,14 +34,17 @@ function CustomCheckbox({
   };
   return (
     <div className='col-span-1'>
-      <input
-        id={name}
-        type={type}
-        {...register(name as keyof InputValues, { required })}
-        onChange={handleCheckboxChange}
-        checked={isChecked}
-      />
-      <label>{title}</label>
+      <label>
+        <input
+          id={name}
+          type={type}
+          {...register(name as keyof InputValues, { required })}
+          onChange={handleCheckboxChange}
+          checked={isChecked}
+          className='mr-2'
+        />
+        {title}
+      </label>
     </div>
   );
 }

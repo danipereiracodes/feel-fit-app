@@ -60,8 +60,7 @@ const StepThreeFields: React.FC<StepThreeFieldsProps> = ({
             register={register}
             onBlurHandler={onTextInputBlur}
             name='injuries'
-            spanText='Add them separated by comas or dots'
-            placeHolder='back hernia...'
+            placeHolder='separated by comas or spaces'
             required={false}
             error={errors.injuries}
           />

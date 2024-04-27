@@ -26,6 +26,7 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
     exerciseExp,
     exerciseFreq,
     goal,
+    name,
   } = data;
 
   return (
@@ -34,7 +35,10 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
       <h1 className='w-full text-center mb-8 text-2xl font-bold'>
         {title && title}
       </h1>
-      <ul className='grid grid-cols-3 overflow-auto'>
+      <ul className='grid grid-cols-2 overflow-auto text-md md:text-sm md:grid-cols-3'>
+        <li className='flex flex-col'>
+          <strong className=' font-bold text-black'>Name:</strong> {name}
+        </li>
         <li className='flex flex-col'>
           <strong className=' font-bold text-black'>Age:</strong> {age}
         </li>
@@ -84,18 +88,22 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
           <strong className=' font-bold text-black'>Goal:</strong> {goal}
         </li>
       </ul>
-      <div className='gap-4 col-span-full text-end mt-8 bottom-16 right-4'>
+      <div className='absolute bottom-4 right-8 gap-4 col-span-full pb-4 mt-4'>
         <Button
           onClick={onPrevStep}
           type='button'
-          styles='w-24 z-20 rounded-xl bg-gray-700 py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
+          styles={
+            'px-4 z-20 bg-gray-700 rounded-lg py-2 text-white font-normal text-lg col-span-2 place-self-end  hover:scale-110 transition duration-300 ease-in-out'
+          }
           text='Back'
         />
         <Button
           onClick={onNextStep}
           type='button'
-          styles='w-24 rounded-xl ml-4 z-20 bg-bright-secondary py-2 text-white font-normal text-lg col-span-2 place-self-end hover:scale-110 transition duration-300 ease-in-out'
-          text='Proceed'
+          styles={
+            'px-4 ml-4 z-20 bg-bright-secondary rounded-lg py-2 text-white font-normal text-lg col-span-2 place-self-end  hover:scale-110 transition duration-300 ease-in-out'
+          }
+          text='Next'
         />
       </div>
     </>
