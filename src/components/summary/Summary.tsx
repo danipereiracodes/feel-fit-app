@@ -58,13 +58,13 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
           <strong className=' font-bold text-black'>Fasting:</strong>{' '}
           {fasting ? 'Yes' : 'No'}
         </li>
-        {fastingFreq.length ? (
+        {fastingFreq ? (
           <li className='flex flex-col'>
             <strong className=' font-bold text-black'>Fasting freq:</strong>{' '}
             {fastingFreq}
           </li>
         ) : null}
-        {allergies !== '' ? (
+        {allergies ? (
           <li className='flex flex-col'>
             <strong className=' font-bold text-black'>Allergies:</strong>{' '}
             {allergies}
@@ -78,7 +78,7 @@ const Summary: React.FC<SummaryProps> = ({ onPrevStep, onNextStep, title }) => {
           <strong className=' font-bold text-black'>Exercise Freq:</strong>{' '}
           {exerciseFreq}
         </li>
-        {injuries !== '' ? (
+        {injuries ? (
           <li className='flex flex-col'>
             <strong className=' font-bold text-black'>Injuries:</strong>{' '}
             {injuries}
