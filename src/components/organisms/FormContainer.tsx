@@ -8,7 +8,7 @@ interface FormLayoutProps {
 
 const FormContainer: React.FC<FormLayoutProps> = ({ children }) => {
   return (
-    <div className='relative flex rounded-xl flex-col transition-opacity ease-in-out delay-150 z-20 bg-white/50 min-w-[298px] h-[600px] md:w-[500px] md:h-[525px] lg:h-[400px] lg:w-[550px] text-black text-lg'>
+    <div className='relative flex rounded-xl flex-col transition-opacity ease-in-out delay-150 z-20 bg-white/50 h-[650px] md:h-[450px] lg:w-[624px] lg:h-[400px] text-black text-lg'>
       <ProgressBar />
 
       {children}

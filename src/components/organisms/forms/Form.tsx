@@ -29,7 +29,7 @@ const Form: React.FC<FormProps> = ({
             gridCols
           )} gap-8 text-black text-start place-self-center`}
         >
-          <legend className='w-full text-center mb-8 text-2xl font-bold'>
+          <legend className='text-center mb-8 text-2xl font-bold'>
             {title}
           </legend>
           {renderSteps(currentStep)}
