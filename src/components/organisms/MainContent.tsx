@@ -25,7 +25,7 @@ const MainContent: React.FC = () => {
   return (
     <section
       style={{
-        backgroundImage: `url("/images/background/${backgroundImg}")`,
+        backgroundImage: `url("./images/background/${backgroundImg}")`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
