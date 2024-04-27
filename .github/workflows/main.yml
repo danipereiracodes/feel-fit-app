@@ -12,18 +12,21 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v2 
+        
+      - name: Install pnpm
+        run: npm install -g pnpm 
+        
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: '18'
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm intall
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
