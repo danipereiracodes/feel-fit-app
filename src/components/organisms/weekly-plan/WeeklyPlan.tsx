@@ -1,4 +1,3 @@
-import { mockResponse } from '../../../mocks/dataResponseMock';
 import { IoMdDownload } from 'react-icons/io';
 
 import DayIcon from '../DayIcon';
@@ -45,7 +44,7 @@ const WeeklyPlan: React.FC<WeeklyPlanProps> = ({
           height='600'
           style={{ zIndex: '20' }}
         >
-          <WeeklyPlanPDF data={mockResponse.data} userName={userName} />
+          <WeeklyPlanPDF data={data} userName={userName} />
         </PDFViewer>
       </>
     );

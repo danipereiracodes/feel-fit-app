@@ -7,8 +7,6 @@ import {
   Image,
 } from '@react-pdf/renderer';
 
-import { ExercisePlan, MealPlan } from '../../../mocks/dataResponseMock';
-
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
@@ -58,9 +56,9 @@ const styles = StyleSheet.create({
 
 interface WeeklyPlanPDFProps {
   data: {
-    exercisePlan: ExercisePlan;
-    mealPlan: { [day: string]: MealPlan };
-  };
+    exercisePlan: { [day: string]: string };
+    mealPlan: { [day: string]: { [meal: string]: string } };
+  } | null;
   userName: string;
 }
 
@@ -79,18 +77,19 @@ const WeeklyPlanPDF: React.FC<WeeklyPlanPDFProps> = ({ data, userName }) => {
             's week meal and exercise plan on ${timeStamp}`}
           </Text>
         </View>
-        {Object.keys(data.exercisePlan).map((day, index) => (
-          <View key={index} style={styles.section}>
-            <Text style={styles.title}>{day}</Text>
-            <Text style={styles.text}>{data.exercisePlan[day]}</Text>
-            <Text style={styles.subtitle}>Meal Plan</Text>
-            {Object.keys(data.mealPlan[day]).map((meal, mealIndex) => (
-              <Text key={mealIndex} style={styles.text}>
-                {meal}: {data.mealPlan[day][meal]}
-              </Text>
-            ))}
-          </View>
-        ))}
+        {data &&
+          Object.keys(data.exercisePlan).map((day, index) => (
+            <View key={index} style={styles.section}>
+              <Text style={styles.title}>{day}</Text>
+              <Text style={styles.text}>{data.exercisePlan[day]}</Text>
+              <Text style={styles.subtitle}>Meal Plan</Text>
+              {Object.keys(data.mealPlan[day]).map((meal, mealIndex) => (
+                <Text key={mealIndex} style={styles.text}>
+                  {meal}: {data.mealPlan[day][meal]}
+                </Text>
+              ))}
+            </View>
+          ))}
         <Text>App developed by danipereira.dev</Text>
       </Page>
     </Document>
