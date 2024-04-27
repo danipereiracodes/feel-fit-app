@@ -2,7 +2,6 @@
 
 # FEEL FIT
 
-![Feel Fit App Logo](https://ibb.co/jZKt55f)
 
 ## Overview
 
