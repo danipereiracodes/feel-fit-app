@@ -1,13 +1,4 @@
-<!-- Markdown styles -->
-<style>
-  body {
-    background-color: #f0f0f0;
-    color: #333;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    color: #003366;
-  }
-</style>
+<div style="background-color:#f0f0f0; color:#333; padding:20px;">
 
 # Feel Fit App
 
