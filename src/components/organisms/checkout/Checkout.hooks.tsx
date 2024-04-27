@@ -21,7 +21,7 @@ const useCheckout = () => {
   };
 
   useEffect(() => {
-    let tipInterval: number;
+    let tipInterval: string | number | NodeJS.Timeout | undefined;
 
     if (data) {
       setPlanData(data);
