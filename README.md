@@ -5,7 +5,7 @@
 
 ## Overview
 
-Feel Fit App is a web application built for HACKATHON DEL DEV with Vite and TypeScript that helps users generate personalized weekly exercise and meal plans based on their input. Powered by the GPT-3.5 turbo model from OpenAI, users can provide information such as dietary preferences, exercise experience, injuries, and more to generate a customized plan. The app also allows users to view their weekly plan in a grid of flip cards and download it as a PDF for offline reference.
+Feel Fit App is a web application built with Vite and TypeScript that helps users generate personalized weekly exercise and meal plans based on their input. Powered by the GPT-3.5 turbo model from OpenAI, users can provide information such as dietary preferences, exercise experience, injuries, and more to generate a customized plan. The app also allows users to view their weekly plan in a grid of flip cards and download it as a PDF for offline reference.
 
 ## Features
 
