@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
     <footer className='flex justify-center items-center text-center bg-primary-dark text-primary-gray text-sm font-extrabold'>
 
       <span>
-        Web Aplication Developed by danipereira.dev for the "Hackathon Del Dev"
+        Developed by danipereira.dev
       </span>
     </footer>
   );
