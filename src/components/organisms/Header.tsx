@@ -5,7 +5,7 @@ const Header: React.FC = () => {
         <a href='/'>
           <div className='flex gap-2 items-center'>
             <img
-              className='w-[125px]'
+              className='w-[125px] ml-8'
               src='./images/logo/fee-fit-logo.png'
               alt='feel fit logo'
             />
