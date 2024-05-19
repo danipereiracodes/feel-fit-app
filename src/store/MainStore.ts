@@ -27,7 +27,7 @@ const initialState = {
 };
 
 export const useMainStore = create<IStore>((set) => ({
-  step: 0,
+  step: 1,
   addStep: (newStep: number) => set({ step: newStep }),
   data: initialState,
 

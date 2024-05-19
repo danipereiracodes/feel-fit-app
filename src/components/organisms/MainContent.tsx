@@ -17,14 +17,18 @@ const MainContent: React.FC = () => {
   };
 
   return (
-    <section className={`container mx-auto relative flex flex-col `}>
+    <section
+      className={`step__container ${
+        step !== 0 ? 'step__container__thinner' : ''
+      }`}
+    >
       <Steps
         currentStep={step}
         onNextStep={handleStepForward}
         onPrevStep={handleStepBack}
       />
 
-      {step === 0 && (
+      {/* {step === 0 && (
         <div className='flex items-center gap-4 z-20 text-white hover:scale-110 transition duration-300 ease-in-out'>
           <Button
             type='button'
@@ -33,7 +37,7 @@ const MainContent: React.FC = () => {
             styles='uppercase w-32  py-2 px-6 bg-bright-secondary rounded-xl'
           />
         </div>
-      )}
+      )} */}
     </section>
   );
 };

@@ -27,12 +27,7 @@ const useStepWizard = ({
   const steps = [
     {
       component: (
-        <Form
-          onNextStep={onNextStep}
-          onPrevStep={onPrevStep}
-          title='Lets start with some information about you'
-          gridCols='grid-cols-2 md:grid-cols-2 lg:grid-cols-3 '
-        />
+        <Form onNextStep={onNextStep} onPrevStep={onPrevStep} title='Step 1' />
       ),
     },
     {
@@ -41,7 +36,6 @@ const useStepWizard = ({
           onNextStep={onNextStep}
           onPrevStep={onPrevStep}
           title='Now tell us about your alergies or special diet'
-          gridCols='grid-cols-1 md:grid-cols-2 lg:grid-cols-2'
         />
       ),
     },
@@ -51,7 +45,6 @@ const useStepWizard = ({
           onNextStep={onNextStep}
           onPrevStep={onPrevStep}
           title='How often do you exercise?'
-          gridCols='grid-cols-1 md:grid-cols-2 lg:grid-cols-2'
         />
       ),
     },

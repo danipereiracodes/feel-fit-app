@@ -2,14 +2,15 @@ type ButtonType = 'submit' | 'reset' | 'button' | undefined;
 
 interface ButtonProps {
   type: ButtonType;
-  styles: string | undefined;
+
   text: string;
   onClick?: () => void;
+  className: string | undefined;
 }
 
-const Button: React.FC<ButtonProps> = ({ type, styles, text, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ type, text, onClick, className }) => {
   return (
-    <button type={type} className={styles} onClick={onClick}>
+    <button type={type} className={className} onClick={onClick}>
       {text}
     </button>
   );

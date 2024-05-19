@@ -12,7 +12,7 @@ type ValidationRules = {
 interface InputProps {
   name: string;
   register: UseFormRegister<InputValues>;
-  className: string;
+
   onBlurHandler?: (e: React.FocusEvent<HTMLInputElement>) => void;
   validationRules: ValidationRules;
   placeholder: string;
@@ -27,7 +27,6 @@ const Input: React.FC<InputProps> = ({
   register,
   onBlurHandler,
   placeholder,
-  className,
 }) => {
   return (
     <input
@@ -35,7 +34,7 @@ const Input: React.FC<InputProps> = ({
       {...register(name as keyof InputValues, validationRules)}
       onBlur={onBlurHandler}
       placeholder={placeholder}
-      className={className}
+      className={`${type === 'text' ? 'input__text' : 'input__number'}`}
     />
   );
 };

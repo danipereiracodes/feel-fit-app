@@ -1,16 +1,15 @@
+import Heart from '../atoms/icons/heart.svg';
+import User from '../atoms/icons/user.svg';
+
 const Header: React.FC = () => {
   return (
-    <header className='flex items-center bg-secondary-dark text-primary-gray font-extrabold text-2xl'>
-      <div className='container mx-auto'>
-        <a href='/'>
-          <div className='flex gap-2 items-center'>
-            <img
-              className='w-[125px] ml-8'
-              src='./images/logo/fee-fit-logo.png'
-              alt='feel fit logo'
-            />
-          </div>
-        </a>
+    <header className='header'>
+      <div className='header__logo'>
+        <img src={Heart} alt='feel fit logo' /> <span>Feel Fit</span>
+      </div>
+      <div className='header__user'>
+        {' '}
+        <img src={User} alt='user login icon' />{' '}
       </div>
     </header>
   );
