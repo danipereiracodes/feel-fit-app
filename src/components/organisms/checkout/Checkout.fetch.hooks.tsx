@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+/* import { useEffect, useState } from 'react';
 import { generatePrompt } from '../../../utils/GeneratePrompt';
-import { useMainStore } from '../../../store/MainStore';
+import { useMainStore } from '../../../store/MainStore'; */
 
 export interface PlanData {
   exercisePlan: string;
@@ -8,17 +8,17 @@ export interface PlanData {
 }
 
 const useCheckoutFetch = () => {
-  const [data, setData] = useState<{
+  /*  const [data, setData] = useState<{
     exercisePlan: { [day: string]: string };
     mealPlan: { [day: string]: { [meal: string]: string } };
-  } | null>(null); // Updated type
-  const [loading, setLoading] = useState(false);
+  } | null>(null);  */
+  // Updated type
+  /*   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showTips, setShowTips] = useState(false);
-  const userData = useMainStore((state) => state.data);
-  const prompt = generatePrompt(userData);
-
-  async function fetchChatCompletions() {
+  const userData = useMainStore((state) => state.data); */
+  /*   const prompt = generatePrompt(userData); */
+  /*   async function fetchChatCompletions() {
     const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
     const url = 'https://api.openai.com/v1/chat/completions';
 
@@ -52,9 +52,8 @@ const useCheckoutFetch = () => {
 
     const responseData = await response.json();
     return responseData;
-  }
-
-  useEffect(() => {
+  } */
+  /*   useEffect(() => {
     setLoading(true);
     setShowTips(true);
     fetchChatCompletions()
@@ -70,8 +69,8 @@ const useCheckoutFetch = () => {
         );
       });
   }, []);
-
-  return { data, loading, error, showTips };
+ */
+  /* return { data, loading, error, showTips }; */
 };
 
 export default useCheckoutFetch;
