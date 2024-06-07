@@ -70,15 +70,31 @@ input {
   background-color: rgba(0, 0, 0, 0.663);
 }
 
+section.home__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
 header.header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   position: sticky;
   top: 0;
   align-items: center;
   padding: 1rem 2rem;
   background-color: transparent;
   color: white;
+  max-width: 1200px;
+}
+
+.header__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .header__logo {
@@ -119,6 +135,10 @@ section.homebanner {
   font-size: 5vh;
 }
 
+.homebanner p {
+  font-size: 4vh;
+}
+
 .homebanner__button {
   font-size: 2vh;
   background-color: var(--tertiary-color);
@@ -134,7 +154,6 @@ section.homebanner {
   justify-content: center;
   align-items: center;
   height: 50%;
-
   border-radius: 48px 48px 0 0;
   background-color: var(--secondary-color-transparent);
 }
@@ -241,4 +260,26 @@ section.homebanner {
 
 input::placeholder {
   font-size: 2vh;
+}
+
+@media screen and (min-width: 700px) {
+  section.home__container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 5rem;
+    gap: 3rem;
+  }
+
+  section.homebanner {
+    flex-grow: 0;
+    text-align: left;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .signin {
+    width: 50%;
+    border-radius: 48px;
+  }
 }
